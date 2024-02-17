@@ -23,10 +23,15 @@ class _MenuItemState extends State<MenuItem> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => widget.pageOpener()));
         },
+        borderRadius: BorderRadius.circular(15),
+        hoverColor: Color.fromRGBO(227, 213, 219, 0.5),
+        highlightColor: Color.fromRGBO(201, 116, 149, 0.5),
+        splashColor: Colors.transparent,
         child: Container(
           padding: const EdgeInsets.only(
-            bottom: 0.5, // Space between underline and text
-          ),
+              bottom: 0.5, // Space between underline and text
+              left: 10,
+              right: 10),
           decoration: BoxDecoration(
               border: Border(
                   bottom: BorderSide(
