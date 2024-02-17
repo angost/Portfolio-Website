@@ -17,8 +17,25 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: MyAppBar(context, "Home"),
       body: Center(
-        child: Text('Hello World!'),
-      ),
+          child: Column(
+        children: <Widget>[
+          Spacer(),
+          ShaderMask(
+              blendMode: BlendMode.srcIn,
+              shaderCallback: (bounds) => LinearGradient(colors: [
+                    Colors.pink.shade700,
+                    Color.fromARGB(255, 223, 91, 144),
+                  ]).createShader(
+                    Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                  ),
+              child: Text("In progress", style: TextStyle(fontSize: 56))),
+          Spacer(),
+          Container(
+            color: Color.fromRGBO(217, 217, 217, 1),
+            height: 50,
+          )
+        ],
+      )),
     );
   }
 }

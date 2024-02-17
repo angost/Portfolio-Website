@@ -16,9 +16,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(context, "Projects"),
-      body: Center(
-        child: Text('Hello World!'),
-      ),
+      body: Center(child: Text("Hello World!")),
     );
   }
 }

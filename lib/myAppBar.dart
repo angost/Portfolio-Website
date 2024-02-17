@@ -12,6 +12,7 @@ class MyAppBar extends AppBar {
             title: Text("Angelika Ostrowska", style: TextStyle(fontSize: 28)),
             automaticallyImplyLeading: false,
             actions:
+                // TODO change navigation behaviour, e.g. create Controller with methods like changeToPage(x) which POPS current page from stack and PUSHES new, requested page. Better, because we won't have many unncessary elements on stack
                 Menu(context, currentPage, TextStyle(fontSize: 28)).menuItems,
             // , decoration: TextDecoration.underline
             toolbarHeight: 70);
