@@ -10,6 +10,7 @@ class MyAppBar extends AppBar {
   MyAppBar(this.context, this.currentPage)
       : super(
             title: Text("Angelika Ostrowska", style: TextStyle(fontSize: 28)),
+            automaticallyImplyLeading: false,
             actions:
                 Menu(context, currentPage, TextStyle(fontSize: 28)).menuItems,
             // , decoration: TextDecoration.underline

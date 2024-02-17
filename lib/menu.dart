@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/theme/theme_constants.dart';
-import 'package:portfolio_app/homePage.dart';
 import 'package:portfolio_app/menuItem.dart';
+import 'package:portfolio_app/homePage.dart';
+import 'package:portfolio_app/projectsPage.dart';
+import 'package:portfolio_app/contactPage.dart';
 
 class Menu {
   BuildContext context;
@@ -20,10 +22,10 @@ class Menu {
       MenuItem(
           "Home", "Home" == currentPage, () => new HomePage(), menuTextStyle),
       SizedBox(width: 10),
-      MenuItem("Projects", "Projects" == currentPage, () => new HomePage(),
+      MenuItem("Projects", "Projects" == currentPage, () => new ProjectsPage(),
           menuTextStyle),
       SizedBox(width: 10),
-      MenuItem("Contact", "Contact" == currentPage, () => new HomePage(),
+      MenuItem("Contact", "Contact" == currentPage, () => new ContactPage(),
           menuTextStyle),
       SizedBox(width: 10),
     ];
