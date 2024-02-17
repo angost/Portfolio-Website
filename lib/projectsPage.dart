@@ -31,8 +31,17 @@ class _ProjectsPageState extends State<ProjectsPage> {
               mainAxisSpacing: 20,
               crossAxisSpacing: 40,
               children: List.generate(16, (index) {
-                return Card(
-                  child: Text('Item $index'),
+                return FlipCard(
+                  fill: Fill
+                      .fillBack, // Fill the back side of the card to make in the same size as the front.
+                  direction: FlipDirection.HORIZONTAL, // default
+                  side: CardSide.FRONT, // The side to initially display.
+                  front: Card(
+                    child: Text('Item $index'),
+                  ),
+                  back: Card(
+                    child: Text('Tył'),
+                  ),
                 );
               }),
             ),
