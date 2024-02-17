@@ -17,28 +17,35 @@ class _ProjectsPageState extends State<ProjectsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(context, "Projects"),
-      body:
-          // Center(
-          //     child: Column(
-          //   children: <Widget>[
-          //     Spacer(),
-          GridView.extent(
-        maxCrossAxisExtent: 150,
-        childAspectRatio: (150 / 120),
-        children: List.generate(16, (index) {
-          return Card(
-            child: Text('Item $index'),
-          );
-        }),
-      ),
-      //   Spacer(),
-      //   Container(
-      //     color: Color.fromRGBO(217, 217, 217, 1),
-      //     height: 50,
-      //   )
-      // ],
-      // )
-      // ),
+      body: Center(
+          child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: 50,
+          ),
+          Flexible(
+            child: GridView.extent(
+              maxCrossAxisExtent: 300,
+              childAspectRatio: (5 / 4),
+              padding: EdgeInsets.only(left: 100, right: 100),
+              mainAxisSpacing: 20,
+              crossAxisSpacing: 40,
+              children: List.generate(16, (index) {
+                return Card(
+                  child: Text('Item $index'),
+                );
+              }),
+            ),
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          Container(
+            color: Color.fromRGBO(217, 217, 217, 1),
+            height: 50,
+          )
+        ],
+      )),
     );
   }
 }
