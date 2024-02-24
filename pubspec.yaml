@@ -25,3 +25,10 @@ flutter:
         - asset: fonts/DMSerifText-Regular.ttf
         - asset: fonts/DMSerifText-Italic.ttf
           style: italic
+    - family: DM Mono
+      fonts:
+        - asset: fonts/DMMono-Regular.ttf
+        - asset: fonts/DMMono-Italic.ttf
+          style: italic
+        - asset: fonts/DMMono-Medium.ttf
+          weight: 700

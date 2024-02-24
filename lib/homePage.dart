@@ -28,7 +28,8 @@ class _HomePageState extends State<HomePage> {
                   ]).createShader(
                     Rect.fromLTWH(0, 0, bounds.width, bounds.height),
                   ),
-              child: Text("In progress", style: TextStyle(fontSize: 56))),
+              child: Text("In progress",
+                  style: Theme.of(context).textTheme.displayLarge)),
           Spacer(),
           Container(
             color: Color.fromRGBO(217, 217, 217, 1),

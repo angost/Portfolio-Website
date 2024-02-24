@@ -9,11 +9,12 @@ class MyAppBar extends AppBar {
   String currentPage;
   MyAppBar(this.context, this.currentPage)
       : super(
-            title: Text("Angelika Ostrowska", style: TextStyle(fontSize: 28)),
+            title: Text("Angelika Ostrowska",
+                style: Theme.of(context).textTheme.displayMedium),
             automaticallyImplyLeading: false,
-            actions:
-                // TODO change navigation behaviour, e.g. create Controller with methods like changeToPage(x) which POPS current page from stack and PUSHES new, requested page. Better, because we won't have many unncessary elements on stack
-                Menu(context, currentPage, TextStyle(fontSize: 28)).menuItems,
+            actions: Menu(context, currentPage,
+                    Theme.of(context).textTheme.displayMedium!)
+                .menuItems,
             // , decoration: TextDecoration.underline
             toolbarHeight: 70);
 }

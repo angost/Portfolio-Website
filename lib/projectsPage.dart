@@ -40,6 +40,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     controller.toggleCard();
                   },
                   onTap: () {}, // has to be here for onHover to work
+                  hoverColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                   child: FlipCard(
                     controller: controller,
                     fill: Fill
@@ -47,10 +50,14 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     direction: FlipDirection.HORIZONTAL, // default
                     side: CardSide.FRONT, // The side to initially display.
                     front: Card(
-                      child: Text('Item $index'),
+                      child: Text('Item $index',
+                          style: Theme.of(context).textTheme.bodyLarge),
                     ),
                     back: Card(
-                      child: Text('Tył'),
+                      child: Text(
+                        'Tył',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
                     ),
                   ),
                 );
