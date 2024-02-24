@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:portfolio_app/theme/theme_constants.dart';
 import 'package:portfolio_app/myAppBar.dart';
+import 'package:portfolio_app/projectCardFront.dart';
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({super.key});
@@ -49,13 +50,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
                         .fillBack, // Fill the back side of the card to make in the same size as the front.
                     direction: FlipDirection.HORIZONTAL, // default
                     side: CardSide.FRONT, // The side to initially display.
-                    front: Card(
-                      child: Text('Item $index',
-                          style: Theme.of(context).textTheme.bodyLarge),
-                    ),
+                    front: ProjectCardFront(context),
                     back: Card(
                       child: Text(
-                        'Tył',
+                        'Description, description, description',
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ),
