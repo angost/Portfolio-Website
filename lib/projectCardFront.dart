@@ -3,19 +3,20 @@ import 'package:portfolio_app/theme/theme_constants.dart';
 
 class ProjectCardFront extends Card {
   BuildContext context;
-  ProjectCardFront(this.context, {super.key})
+  String name, description, imgPath;
+  ProjectCardFront(this.context, this.name, this.description, this.imgPath,
+      {super.key})
       : super(
             child: SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text('Project Title',
-                    style: Theme.of(context).textTheme.bodyLarge),
+                Text(name, style: Theme.of(context).textTheme.bodyLarge),
                 Text(
-                  'Description, description, description, lorem ipsum dot sit amet',
+                  description,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
-                Image.asset('assets/images/fish.png'),
+                Image.asset(imgPath),
               ]),
         ));
 }
