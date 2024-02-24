@@ -1,5 +1,7 @@
-// ignore_for_file: unnecessary_this, prefer_const_constructors
+// ignore_for_file: unnecessary_this, prefer_const_constructors, unused_field
 
+// import 'package:flip_card/flip_card_controller.dart';
+import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:portfolio_app/theme/theme_constants.dart';
@@ -31,16 +33,25 @@ class _ProjectsPageState extends State<ProjectsPage> {
               mainAxisSpacing: 20,
               crossAxisSpacing: 40,
               children: List.generate(16, (index) {
-                return FlipCard(
-                  fill: Fill
-                      .fillBack, // Fill the back side of the card to make in the same size as the front.
-                  direction: FlipDirection.HORIZONTAL, // default
-                  side: CardSide.FRONT, // The side to initially display.
-                  front: Card(
-                    child: Text('Item $index'),
-                  ),
-                  back: Card(
-                    child: Text('Tył'),
+                FlipCardController controller = FlipCardController();
+
+                return InkWell(
+                  onHover: (isHovering) {
+                    controller.toggleCard();
+                  },
+                  onTap: () {}, // has to be here for onHover to work
+                  child: FlipCard(
+                    controller: controller,
+                    fill: Fill
+                        .fillBack, // Fill the back side of the card to make in the same size as the front.
+                    direction: FlipDirection.HORIZONTAL, // default
+                    side: CardSide.FRONT, // The side to initially display.
+                    front: Card(
+                      child: Text('Item $index'),
+                    ),
+                    back: Card(
+                      child: Text('Tył'),
+                    ),
                   ),
                 );
               }),
