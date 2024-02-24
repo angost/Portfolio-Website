@@ -135,14 +135,16 @@ class _ProjectsPageState extends State<ProjectsPage> {
               children: List.generate(16, (index) {
                 FlipCardController controller = FlipCardController();
 
-                return InkWell(
-                  onHover: (isHovering) {
+                return MouseRegion(
+                  onEnter: (PointerEvent _) {
                     controller.toggleCard();
                   },
-                  onTap: () {}, // has to be here for onHover to work
-                  hoverColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
+                  onExit: (PointerEvent _) async {
+                    await Future.delayed(const Duration(seconds: 3));
+                    if (!controller.state!.isFront) {
+                      controller.toggleCard();
+                    }
+                  },
                   child: FlipCard(
                     controller: controller,
                     fill: Fill
