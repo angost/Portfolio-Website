@@ -15,5 +15,6 @@ class MyAppBar extends AppBar {
                     Theme.of(context).textTheme.displayMedium!)
                 .menuItems,
             // , decoration: TextDecoration.underline
-            toolbarHeight: 70);
+            toolbarHeight: 70,
+            scrolledUnderElevation: 0);
 }
