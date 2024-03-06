@@ -1,7 +1,6 @@
 // ignore_for_file: unnecessary_this, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:portfolio_app/theme/theme_constants.dart';
 import 'package:portfolio_app/menuItem.dart';
 import 'package:portfolio_app/homePage.dart';
 import 'package:portfolio_app/projectsPage.dart';
@@ -19,13 +18,12 @@ class Menu {
 
   void createMenuItems() {
     this.menuItems = <Widget>[
-      MenuItem(
-          "Home", "Home" == currentPage, () => new HomePage(), menuTextStyle),
+      MenuItem("Home", "Home" == currentPage, () => HomePage(), menuTextStyle),
       SizedBox(width: 10),
-      MenuItem("Projects", "Projects" == currentPage, () => new ProjectsPage(),
+      MenuItem("Projects", "Projects" == currentPage, () => ProjectsPage(),
           menuTextStyle),
       SizedBox(width: 10),
-      MenuItem("Contact", "Contact" == currentPage, () => new ContactPage(),
+      MenuItem("Contact", "Contact" == currentPage, () => ContactPage(),
           menuTextStyle),
       SizedBox(width: 10),
     ];

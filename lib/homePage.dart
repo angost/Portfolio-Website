@@ -1,7 +1,6 @@
 // ignore_for_file: unnecessary_this, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:portfolio_app/theme/theme_constants.dart';
 import 'package:portfolio_app/myAppBar.dart';
 
 class HomePage extends StatefulWidget {

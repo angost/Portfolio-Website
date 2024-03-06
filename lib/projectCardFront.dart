@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_app/theme/theme_constants.dart';
 
 class ProjectCardFront extends Card {
   BuildContext context;

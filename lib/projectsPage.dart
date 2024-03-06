@@ -4,7 +4,6 @@
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
-import 'package:portfolio_app/theme/theme_constants.dart';
 import 'package:portfolio_app/myAppBar.dart';
 import 'package:portfolio_app/projectCardFront.dart';
 
