@@ -121,14 +121,11 @@ class _ProjectsPageState extends State<ProjectsPage> {
       body: Center(
           child: Column(
         children: <Widget>[
-          SizedBox(
-            height: 20,
-          ),
           Flexible(
             child: GridView.extent(
               maxCrossAxisExtent: 300,
               childAspectRatio: (5 / 4),
-              padding: EdgeInsets.only(left: 100, right: 100),
+              padding: EdgeInsets.only(top: 20, left: 100, right: 100),
               mainAxisSpacing: 20,
               crossAxisSpacing: 40,
               children: List.generate(16, (index) {
