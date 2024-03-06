@@ -19,8 +19,15 @@ class _MenuItemState extends State<MenuItem> {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => widget.pageOpener()));
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) =>
+                  widget.pageOpener(),
+              transitionDuration: Duration.zero,
+              reverseTransitionDuration: Duration.zero,
+            ),
+          );
         },
         borderRadius: BorderRadius.circular(15),
         hoverColor: Color.fromRGBO(227, 213, 219, 0.5),
