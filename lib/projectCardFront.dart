@@ -12,7 +12,9 @@ class ProjectCardFront extends Card {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
+                  SizedBox(height: 10),
                   Text(name, style: Theme.of(context).textTheme.bodyLarge),
+                  SizedBox(height: 10),
                   Image.asset(imgPath),
                 ]),
           ),
