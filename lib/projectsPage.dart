@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:portfolio_app/myAppBar.dart';
 import 'package:portfolio_app/projectCardFront.dart';
+import 'package:portfolio_app/projectCardBack.dart';
 
 class ProjectsPage extends StatefulWidget {
   ProjectsPage({super.key});
@@ -150,14 +151,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     front: ProjectCardFront(
                         context,
                         widget.projectsData[index]['name'],
-                        widget.projectsData[index]['description'],
                         widget.projectsData[index]['path']),
-                    back: Card(
-                      child: Text(
-                        'Description, description, description, lorem ipsum dot sit amet',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ),
+                    back: ProjectCardBack(
+                        context, widget.projectsData[index]['description']),
                   ),
                 );
               }),
