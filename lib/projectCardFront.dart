@@ -7,6 +7,7 @@ class ProjectCardFront extends Card {
       {super.key})
       : super(
             child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
