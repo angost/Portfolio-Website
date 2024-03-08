@@ -133,15 +133,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                 FlipCardController controller = FlipCardController();
 
                 return MouseRegion(
-                  onEnter: (PointerEvent _) {
-                    controller.toggleCard();
-                  },
-                  onExit: (PointerEvent _) async {
-                    await Future.delayed(const Duration(seconds: 3));
-                    if (!controller.state!.isFront) {
-                      controller.toggleCard();
-                    }
-                  },
+                  cursor: SystemMouseCursors.click,
                   child: FlipCard(
                     controller: controller,
                     fill: Fill
