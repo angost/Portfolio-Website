@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:portfolio_app/myAppBar.dart';
 import 'package:portfolio_app/projectCardFront.dart';
+import 'package:portfolio_app/projectCardBack.dart';
 
 class ProjectsPage extends StatefulWidget {
   ProjectsPage({super.key});
@@ -121,14 +122,11 @@ class _ProjectsPageState extends State<ProjectsPage> {
       body: Center(
           child: Column(
         children: <Widget>[
-          SizedBox(
-            height: 20,
-          ),
           Flexible(
             child: GridView.extent(
               maxCrossAxisExtent: 300,
               childAspectRatio: (5 / 4),
-              padding: EdgeInsets.only(left: 100, right: 100),
+              padding: EdgeInsets.only(top: 20, left: 100, right: 100),
               mainAxisSpacing: 20,
               crossAxisSpacing: 40,
               children: List.generate(16, (index) {
@@ -153,14 +151,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     front: ProjectCardFront(
                         context,
                         widget.projectsData[index]['name'],
-                        widget.projectsData[index]['description'],
                         widget.projectsData[index]['path']),
-                    back: Card(
-                      child: Text(
-                        'Description, description, description, lorem ipsum dot sit amet',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ),
+                    back: ProjectCardBack(
+                        context, widget.projectsData[index]['description']),
                   ),
                 );
               }),

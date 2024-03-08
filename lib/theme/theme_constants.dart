@@ -6,6 +6,7 @@ ThemeData baseTheme = ThemeData(
     textTheme: const TextTheme(
       displayLarge: TextStyle(fontFamily: 'DM Serif Text', fontSize: 56),
       displayMedium: TextStyle(fontFamily: 'DM Serif Text', fontSize: 28),
+      displaySmall: TextStyle(fontFamily: 'DM Serif Text', fontSize: 18),
       bodyLarge: TextStyle(fontFamily: 'DM Mono'),
       bodyMedium: TextStyle(fontFamily: 'DM Mono'),
     ));
