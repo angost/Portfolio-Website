@@ -5,18 +5,22 @@ class ProjectCardFront extends Card {
   String name, imgPath;
   ProjectCardFront(this.context, this.name, this.imgPath, {super.key})
       : super(
+            // elevation: 0,
+            shadowColor: Colors.transparent,
+            color: Color.fromRGBO(250, 242, 250, 1),
             child: ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-          child: SingleChildScrollView(
-            physics: const NeverScrollableScrollPhysics(),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  SizedBox(height: 10),
-                  Text(name, style: Theme.of(context).textTheme.bodyLarge),
-                  SizedBox(height: 10),
-                  Image.asset(imgPath),
-                ]),
-          ),
-        ));
+              behavior:
+                  ScrollConfiguration.of(context).copyWith(scrollbars: false),
+              child: SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      SizedBox(height: 10),
+                      Text(name, style: Theme.of(context).textTheme.bodyLarge),
+                      SizedBox(height: 10),
+                      Image.asset(imgPath),
+                    ]),
+              ),
+            ));
 }
