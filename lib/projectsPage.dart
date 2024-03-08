@@ -11,6 +11,7 @@ import 'package:portfolio_app/projectCardBack.dart';
 class ProjectsPage extends StatefulWidget {
   ProjectsPage({super.key});
 
+  List<FlipCardController> controllers = [];
   List projectsData = <Map<String, String>>[
     {
       'name': 'Flood fill in Assembly',
@@ -131,31 +132,31 @@ class _ProjectsPageState extends State<ProjectsPage> {
               crossAxisSpacing: 40,
               children: List.generate(16, (index) {
                 FlipCardController controller = FlipCardController();
+                widget.controllers.add(controller);
 
                 return MouseRegion(
-                  onEnter: (PointerEvent _) {
-                    controller.toggleCard();
-                  },
-                  onExit: (PointerEvent _) async {
-                    await Future.delayed(const Duration(seconds: 3));
-                    if (!controller.state!.isFront) {
-                      controller.toggleCard();
-                    }
-                  },
-                  child: FlipCard(
-                    controller: controller,
-                    fill: Fill
-                        .fillBack, // Fill the back side of the card to make in the same size as the front.
-                    direction: FlipDirection.HORIZONTAL, // default
-                    side: CardSide.FRONT, // The side to initially display.
-                    front: ProjectCardFront(
-                        context,
-                        widget.projectsData[index]['name'],
-                        widget.projectsData[index]['path']),
-                    back: ProjectCardBack(
-                        context, widget.projectsData[index]['description']),
-                  ),
-                );
+                    // onEnter: (PointerEvent _) {
+                    //   controller.toggleCard();
+                    // },
+                    // onExit: (PointerEvent _) async {
+                    //   await Future.delayed(const Duration(seconds: 3));
+                    //   if (!controller.state!.isFront) {
+                    //     controller.toggleCard();
+                    //   }
+                    // },
+                    child: FlipCard(
+                  controller: controller,
+                  fill: Fill
+                      .fillBack, // Fill the back side of the card to make in the same size as the front.
+                  direction: FlipDirection.HORIZONTAL, // default
+                  side: CardSide.FRONT, // The side to initially display.
+                  front: ProjectCardFront(
+                      context,
+                      widget.projectsData[index]['name'],
+                      widget.projectsData[index]['path']),
+                  back: ProjectCardBack(
+                      context, widget.projectsData[index]['description']),
+                ));
               }),
             ),
           ),
@@ -169,5 +170,23 @@ class _ProjectsPageState extends State<ProjectsPage> {
         ],
       )),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      List<int> indexesToFlip =
+          List<int>.generate(widget.projectsData.length, (i) => i);
+      indexesToFlip.shuffle();
+
+      for (int indexToFlip in indexesToFlip.sublist(0, 5)) {
+        widget.controllers[indexToFlip].hint(
+          duration: Duration(milliseconds: 1000),
+          total: Duration(milliseconds: 1000),
+        );
+      }
+    });
   }
 }
