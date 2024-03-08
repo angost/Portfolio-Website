@@ -1,0 +1,29 @@
+
+{
+    "projects": [
+        {
+            "name": "ASP",
+            "description_short": "ola ola",
+            "description_long": "ola ola",
+            "img_paths": [""],
+            "technologies": ["Python", "Git", "C"],
+            "github_link": "",
+            "people_no": "solo",
+            "goal": "personal",
+            "takeaways": [],
+            "other": []
+        },
+        {
+            "name": "Bdb",
+            "description_short": "nic",
+            "description_long": "coś więcej",
+            "img_paths": ["/path/assets"],
+            "technologies": ["C++", "JAVA", "C"],
+            "github_link": "",
+            "people_no": "group",
+            "goal": "university",
+            "takeaways": [],
+            "other": []
+        }
+    ]
+}
