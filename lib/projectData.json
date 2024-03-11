@@ -2,11 +2,11 @@
 {
     "projects": [
         {
-            "name": "ASP",
-            "description_short": "ola ola",
-            "description_long": "ola ola",
+            "name": "Fish Simulation",
+            "description_short": "Simulation of swimming and preying behaviour depending on fish speed, size, hunger.",
+            "description_long": "Simple, fun project to simulate fish swimming in a closed environment. Created in Python using Pygame - library for games. Fish are represented as objects, with different types of fish being seperate subclasses (they differ in speed, size and looks). You can specify number of fish to spawn. When the simulation starts, spawned fish start to move around the screen, changing direction if they reach the edge. Each fish starts with a certain level of hunger, which gets higher by eating other fish and lower by swimming. It is represented by a colorful circle around the fish. When hunger becomes too low a method is called, which looks for nearest (smallest difference in x and y position) smaller fish. Then it targets it and changes movement pattern from free swimming to chasing targeted prey. When a fish gets eaten, it becomes a corpse and slowly falls down the screen. Attacker's hunger goes up, and it becomes larger. There's also an option to spawn food next to mouse cursor by clicking its left button, and making all the fish follow the mouse cursor while right mouse button is pressed.",
             "img_paths": [""],
-            "technologies": ["Python", "Git", "C"],
+            "technologies": ["Python", "Pygame", "OOP"],
             "github_link": "",
             "people_no": "solo",
             "goal": "personal",
@@ -14,15 +14,39 @@
             "other": []
         },
         {
-            "name": "Bdb",
-            "description_short": "nic",
-            "description_long": "coś więcej",
+            "name": "Matches for Couples",
+            "description_short": "Tool to find activities suitable for both people in a Tinder-like manner.",
+            "description_long": " An app for two people (a couple) in which users are given a small number (5/10) of questions daily (they both get the same questions, which is achieved by generating a random set of questions and writing them to a shared github repository). A question is displayed on a card, frased like 'Would you like to have a picnic outside with your parner?'. A person can drag the card to one of four areas on the screen, representing willingness to do the activity ('very much', 'okay', 'definitely not', ' I can if you want to') which are converted into a number from 1 to 4. Questions are coded and stored in a csv file (index, content). Answers are stored in a seperate csv file (index, person1answer, person2answer), which, after being updated with new answers, is pushed to a github repository. When the other user opens the app, any changes are pulled from the repo. Users can then open a 'Matches' tab, on which all answered questions are displayed in a list, with a compatibility graph on the right. Answers can be sorted by date, by compatibility and marked as favourites. There is also an option to send a request - a custom question from one partner to another, which is marked as 4 (very likely to do it) for the sender, and ? for the receiver. The receiver will respond to the request during the next set of questions.",
             "img_paths": ["/path/assets"],
-            "technologies": ["C++", "JAVA", "C"],
+            "technologies": ["Python", "Pygame", "Git", "GitPython - check name"],
+            "github_link": "",
+            "people_no": "solo",
+            "goal": "personal",
+            "takeaways": ["creating an app layout in pygame", "using gitpython library", "creating a product for 2 people, who use it remotely and share data"],
+            "other": []
+        },
+        {
+            "name": "Vehicle Renting (VeloC++ity)",
+            "description_short": "Command line app in C++ simulating city Bikes and Scooters renting system.",
+            "description_long": "A group project in C++. It provides the logic of city bikes and scooters renting system. There are 3 modes availible, for different types of users: Client (who can create an account, deposit money on it, localise the nearest free vehicle, reserve it in advance, rent it, check for free spaces on the stations, return rented vehicle), Service (technical support group, which can add/remove a vehicle, move vehicles between stations, fix a vehicle) and Admin (who can add/remove stations, add/remove vehicles from the system, manage service teams). There are a couple types of vehicles (Bike, Electric Bike, Scooter, Electric Scooter), each of them inherits from an abstract Vehicle class. Information on stations (stats, currently availible vehicles), users (stats, currently reserved and rented vehicles) etc. is stored in a group of txt files, in a complete and well-thought-out manner. Data is being updated so no conflicts emerge, like two clients renting the same bike at the same time (it is also covered inside the classes).",
+            "img_paths": ["/path/assets"],
+            "technologies": ["C++", "OOP", "Git"],
             "github_link": "",
             "people_no": "group",
             "goal": "university",
-            "takeaways": [],
+            "takeaways": ["using abstract classes, virtual functions, iterators, templates in C++", "saving app state to file, reading and updating it", "user identification, authentication, authorization"],
+            "other": []
+        },
+        {
+            "name": "Hotels Application (Sleeping.com)",
+            "description_short": "Desktop app in Java - hotel rooms reservation system.",
+            "description_long": "A group project in Java I was very passionate about. We created a desktop app for a reservation system which enabled: for the Owner - adding new hotels and rooms in them, managing owner's property (modifying/removing), looking through and managing reservations, reviews, ... . For the Client - searching for rooms, seeing offer details, doing a reservation, paying, prolonging/cancelling future reservations, adding reviews to past reservations, ... . Before that, User had to signing up/log in. All data about rooms, reservations, users, etc. was stored in a relatonal SQL database (using PostgreSQL) which we first planned using an ER model. My job was mainly creating GUI, which was a huge part of the whole application and made me learn how to use Swing library.",
+            "img_paths": ["/path/assets"],
+            "technologies": ["Java", "Swing", "SQL", "Git"],
+            "github_link": "",
+            "people_no": "group",
+            "goal": "university",
+            "takeaways": ["using Swing to create desktop app GUI", "planning relational database structure (ER model)", "participating in a larger, more complex project", "designing app views in Figma"],
             "other": []
         }
     ]
