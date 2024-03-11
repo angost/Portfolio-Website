@@ -16,7 +16,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(context, "Projects"), // add back navigation arrow
+      appBar: MyAppBar(context, "Projects", true), // add back navigation arrow
       body: Center(
         child: Text(widget.projectDetails['name']),
       ),

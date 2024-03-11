@@ -6,11 +6,12 @@ import 'package:portfolio_app/menu.dart';
 class MyAppBar extends AppBar {
   BuildContext context;
   String currentPage;
-  MyAppBar(this.context, this.currentPage, {super.key})
+  bool backArrow;
+  MyAppBar(this.context, this.currentPage, this.backArrow, {super.key})
       : super(
             title: Text("Angelika Ostrowska",
                 style: Theme.of(context).textTheme.displayMedium),
-            automaticallyImplyLeading: false,
+            automaticallyImplyLeading: backArrow,
             actions: Menu(context, currentPage,
                     Theme.of(context).textTheme.displayMedium!)
                 .menuItems,

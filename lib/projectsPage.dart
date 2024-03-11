@@ -40,7 +40,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(context, "Projects"),
+      appBar: MyAppBar(context, "Projects", false),
       body: Center(
           child: Column(
         children: <Widget>[
