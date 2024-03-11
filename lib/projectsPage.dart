@@ -117,13 +117,17 @@ class ProjectsPage extends StatefulWidget {
 }
 
 class _ProjectsPageState extends State<ProjectsPage> {
-  late var projectsData;
-  // Map<String, dynamic>? projectsData;
+  // late var projectsData;
+  var projectsData = [];
+  // bool dataReady = false;
 
   Future<void> readJson() async {
     final String dataJson =
         await rootBundle.loadString('assets/projectsData.json');
     projectsData = await json.decode(dataJson)['projects'];
+    setState(() {
+      // dataReady = true;
+    });
   }
 
   @override
@@ -134,9 +138,6 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
   @override
   Widget build(BuildContext context) {
-    projectsData.then(() {
-      print(projectsData[10]['name']);
-    });
     return Scaffold(
       appBar: MyAppBar(context, "Projects"),
       body: Center(
@@ -149,7 +150,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
               padding: EdgeInsets.only(top: 20, left: 100, right: 100),
               mainAxisSpacing: 20,
               crossAxisSpacing: 40,
-              children: List.generate(16, (index) {
+              children: List.generate(projectsData.length, (index) {
                 FlipCardController controller = FlipCardController();
 
                 return MouseRegion(
@@ -170,6 +171,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                         context,
                         projectsData[index]['name'],
                         projectsData[index]['img_paths'][0]),
+                    // 'assets/images/x86.png'),
                     back: ProjectCardBack(
                         context, projectsData[index]['description_short']),
                   ),
