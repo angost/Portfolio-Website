@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/menu.dart';
+import 'package:portfolio_app/theme/theme_constants.dart';
 
 class MyAppBar extends AppBar {
   BuildContext context;
@@ -15,7 +16,6 @@ class MyAppBar extends AppBar {
             actions: Menu(context, currentPage,
                     Theme.of(context).textTheme.displayMedium!)
                 .menuItems,
-            // , decoration: TextDecoration.underline
             toolbarHeight: 70,
             scrolledUnderElevation: 0);
 }

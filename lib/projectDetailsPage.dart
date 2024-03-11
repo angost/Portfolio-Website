@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/myAppBar.dart';
+import 'package:portfolio_app/theme/theme_constants.dart';
 
 class ProjectDetailsPage extends StatefulWidget {
   Map<String, dynamic> projectDetails;
@@ -41,7 +42,8 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                   width: 3,
                                   color: Theme.of(context).primaryColor)),
                         ),
-                        child: Text(widget.projectDetails['name']),
+                        child: Text(widget.projectDetails['name'],
+                            style: textBodyLargeBold),
                       ),
                     ),
                     Expanded(
@@ -59,13 +61,15 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                             color: Theme.of(context)
                                                 .primaryColor)),
                                   ),
-                                  child: Text(widget
-                                      .projectDetails['technologies'][0]))),
+                                  child: Text(
+                                      widget.projectDetails['technologies'][0],
+                                      style: textBodySmall))),
                           Expanded(
                               flex: 3,
                               child: Container(
-                                  child: Text(widget
-                                      .projectDetails['description_long'])))
+                                  child: Text(
+                                      widget.projectDetails['description_long'],
+                                      style: textBodySmall)))
                         ],
                       ),
                     )

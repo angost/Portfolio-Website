@@ -10,3 +10,15 @@ ThemeData baseTheme = ThemeData(
       bodyLarge: TextStyle(fontFamily: 'DM Mono'),
       bodyMedium: TextStyle(fontFamily: 'DM Mono'),
     ));
+
+TextStyle textLarge =
+    const TextStyle(fontFamily: 'DM Serif Text', fontSize: 56);
+TextStyle textMenu = const TextStyle(fontFamily: 'DM Serif Text', fontSize: 28);
+TextStyle textBodyLargeBold = const TextStyle(
+    fontFamily: 'DM Mono', fontSize: 17, fontWeight: FontWeight.w600);
+TextStyle textBodyMedium = const TextStyle(fontFamily: 'DM Mono', fontSize: 16);
+TextStyle textBodyMediumBold = const TextStyle(
+    fontFamily: 'DM Mono', fontSize: 16, fontWeight: FontWeight.w600);
+TextStyle textBodySmall = const TextStyle(fontFamily: 'DM Mono', fontSize: 14);
+TextStyle textButtons =
+    const TextStyle(fontFamily: 'DM Serif Text', fontSize: 18);

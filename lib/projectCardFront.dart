@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_app/theme/theme_constants.dart';
 
 class ProjectCardFront extends Card {
   BuildContext context;
@@ -17,7 +18,7 @@ class ProjectCardFront extends Card {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       SizedBox(height: 10),
-                      Text(name, style: Theme.of(context).textTheme.bodyLarge),
+                      Text(name, style: textBodyMedium),
                       SizedBox(height: 10),
                       Image.asset(imgPath),
                     ]),

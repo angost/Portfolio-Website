@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/projectDetailsPage.dart';
+import 'package:portfolio_app/theme/theme_constants.dart';
 
 class ProjectCardBack extends Card {
   BuildContext context;
@@ -18,7 +19,7 @@ class ProjectCardBack extends Card {
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Text(
                     description,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: textBodySmall,
                   ),
                 ),
                 ElevatedButton(
@@ -36,14 +37,11 @@ class ProjectCardBack extends Card {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromRGBO(227, 203, 214, 1),
                       foregroundColor: Color.fromRGBO(191, 166, 178, 1),
-                      textStyle: Theme.of(context).textTheme.displaySmall,
+                      textStyle: textButtons,
                       shadowColor: Colors.transparent),
                   child: Text(
                     "See more",
-                    style: Theme.of(context)
-                        .textTheme
-                        .displaySmall
-                        ?.copyWith(color: Colors.black),
+                    style: textButtons.copyWith(color: Colors.black),
                   ),
                 )
               ]),

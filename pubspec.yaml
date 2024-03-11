@@ -31,7 +31,7 @@ flutter:
         - asset: fonts/DMMono-Italic.ttf
           style: italic
         - asset: fonts/DMMono-Medium.ttf
-          weight: 700
+          weight: 500
 
   assets:
     - assets/images/
