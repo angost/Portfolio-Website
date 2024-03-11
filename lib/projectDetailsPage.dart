@@ -15,40 +15,6 @@ class ProjectDetailsPage extends StatefulWidget {
 class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   @override
   Widget build(BuildContext context) {
-    double baseBorderRadius = 10.0;
-    double baseBorderWidth = 3.0;
-
-    BoxDecoration createBoxDec(
-        double topLeftRadius,
-        double topRightRadius,
-        double bottomLeftRadius,
-        double bottomRightRadius,
-        double topWidth,
-        double bottomWidth,
-        double leftWidth,
-        double rightWidth) {
-      return BoxDecoration(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(topLeftRadius),
-              topRight: Radius.circular(topRightRadius),
-              bottomLeft: Radius.circular(bottomLeftRadius),
-              bottomRight: Radius.circular(bottomRightRadius)),
-          color: Colors.white,
-          border:
-              // Border.all(width: 3, color: Theme.of(context).primaryColor))
-              Border(
-                  top: BorderSide(
-                      width: topWidth, color: Theme.of(context).primaryColor),
-                  bottom: BorderSide(
-                      width: bottomWidth,
-                      color: Theme.of(context).primaryColor),
-                  left: BorderSide(
-                      width: leftWidth, color: Theme.of(context).primaryColor),
-                  right: BorderSide(
-                      width: rightWidth,
-                      color: Theme.of(context).primaryColor)));
-    }
-
     return Scaffold(
       appBar: MyAppBar(context, "Projects", true), // add back navigation arrow
       body: Center(
@@ -58,21 +24,23 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
             child: Container(
               margin: const EdgeInsets.only(
                   left: 60.0, right: 60.0, top: 40.0, bottom: 40.0),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: Colors.white,
+                  border: Border.all(
+                      width: 3, color: Theme.of(context).primaryColor)),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Expanded(
                       flex: 1,
                       child: Container(
-                        decoration: createBoxDec(
-                            baseBorderRadius,
-                            baseBorderRadius,
-                            0,
-                            0,
-                            baseBorderWidth,
-                            baseBorderWidth / 2,
-                            baseBorderWidth,
-                            baseBorderWidth),
+                        decoration: BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  width: 3,
+                                  color: Theme.of(context).primaryColor)),
+                        ),
                         child: Text(widget.projectDetails['name']),
                       ),
                     ),
@@ -84,29 +52,18 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                           Expanded(
                               flex: 1,
                               child: Container(
-                                  decoration: createBoxDec(
-                                      0,
-                                      0,
-                                      baseBorderRadius,
-                                      0,
-                                      baseBorderWidth / 2,
-                                      baseBorderWidth,
-                                      baseBorderWidth,
-                                      baseBorderWidth / 2),
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                        right: BorderSide(
+                                            width: 3,
+                                            color: Theme.of(context)
+                                                .primaryColor)),
+                                  ),
                                   child: Text(widget
                                       .projectDetails['technologies'][0]))),
                           Expanded(
                               flex: 3,
                               child: Container(
-                                  decoration: createBoxDec(
-                                      0,
-                                      0,
-                                      0,
-                                      baseBorderRadius,
-                                      baseBorderWidth / 2,
-                                      baseBorderWidth,
-                                      baseBorderWidth / 2,
-                                      baseBorderWidth),
                                   child: Text(widget
                                       .projectDetails['description_long'])))
                         ],
