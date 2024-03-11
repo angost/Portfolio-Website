@@ -72,9 +72,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
                         context,
                         projectsData[index]['name'],
                         projectsData[index]['img_paths'][0]),
-                    // 'assets/images/x86.png'),
                     back: ProjectCardBack(
-                        context, projectsData[index]['description_short']),
+                        context,
+                        projectsData[index]['description_short'],
+                        projectsData[index]),
                   ),
                 );
               }),

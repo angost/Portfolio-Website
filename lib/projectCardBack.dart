@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_app/projectDetailsPage.dart';
 
 class ProjectCardBack extends Card {
   BuildContext context;
   String description;
-  ProjectCardBack(this.context, this.description, {super.key})
+  Map<String, dynamic> projectDetails;
+  ProjectCardBack(this.context, this.description, this.projectDetails,
+      {super.key})
       : super(
           // elevation: 0,
           shadowColor: Colors.transparent,
@@ -19,7 +22,17 @@ class ProjectCardBack extends Card {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            ProjectDetailsPage(projectDetails),
+                        transitionDuration: Duration.zero,
+                        reverseTransitionDuration: Duration.zero,
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromRGBO(227, 203, 214, 1),
                       foregroundColor: Color.fromRGBO(191, 166, 178, 1),
