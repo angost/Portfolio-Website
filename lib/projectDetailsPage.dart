@@ -46,6 +46,8 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                   width: 3,
                                   color: Theme.of(context).primaryColor)),
                         ),
+                        alignment: AlignmentDirectional.centerStart,
+                        padding: EdgeInsets.only(left: 60.0),
                         child: Text(widget.projectDetails['name'],
                             style: textBodyLargeBold),
                       ),
@@ -67,64 +69,86 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                   ),
                                   child: Column(
                                     children: <Widget>[
-                                      Text("Technologies:",
-                                          style: textBodyMediumBold),
-                                      Text(
-                                          widget.projectDetails['technologies']
-                                              .join(", \n"),
-                                          style: textBodySmall),
-                                      Text("People no:",
-                                          style: textBodyMediumBold),
-                                      Text(widget.projectDetails['people_no'],
-                                          style: textBodySmall),
-                                      Text("Goal:", style: textBodyMediumBold),
-                                      Text(widget.projectDetails['goal'],
-                                          style: textBodySmall),
-                                      Text("Github link:",
-                                          style: textBodyMediumBold),
-                                      Text("https:/github.com/projectApp",
-                                          style: textBodySmall),
+                                      SizedBox(height: 20.0),
+                                      Padding(
+                                          padding: EdgeInsets.only(left: 20.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Text("Technologies:",
+                                                  style: textBodyMediumBold),
+                                              Text(
+                                                  widget.projectDetails[
+                                                          'technologies']
+                                                      .join(", \n"),
+                                                  style: textBodySmall),
+                                              Text("People no:",
+                                                  style: textBodyMediumBold),
+                                              Text(
+                                                  widget.projectDetails[
+                                                      'people_no'],
+                                                  style: textBodySmall),
+                                              Text("Goal:",
+                                                  style: textBodyMediumBold),
+                                              Text(
+                                                  widget.projectDetails['goal'],
+                                                  style: textBodySmall),
+                                              Text("Github link:",
+                                                  style: textBodyMediumBold),
+                                              Text(
+                                                  "https:/github.com/projectApp",
+                                                  style: textBodySmall),
+                                            ],
+                                          )),
+                                      SizedBox(height: 20.0),
                                       CarouselSlider(
                                           options: CarouselOptions(
-                                            autoPlay: true,
-                                          ),
+                                              autoPlay: true,
+                                              autoPlayInterval:
+                                                  Duration(seconds: 4)),
                                           items: imgPaths.map((i) {
-                                            return Image.asset(i);
+                                            return Builder(
+                                              builder: (BuildContext context) {
+                                                return Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    margin:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 5.0),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.transparent,
+                                                    ),
+                                                    child: Image.asset(i));
+                                              },
+                                            );
                                           }).toList()),
-
-                                      //   return Builder(
-                                      //     builder: (BuildContext context) {
-                                      //       return Container(
-                                      //           width: MediaQuery.of(context)
-                                      //               .size
-                                      //               .width,
-                                      //           // margin: EdgeInsets.symmetric(horizontal: 5.0),
-                                      //           // decoration: BoxDecoration(color: COLOR_ACCENT),
-                                      //           child: Image.asset(i));
-                                      //     },
-                                      //   );
-                                      // }).toList(),
-                                      // ),
                                     ],
                                   ))),
                           Expanded(
                               flex: 3,
                               child: Container(
+                                  padding: EdgeInsets.all(30.0),
                                   child: Column(
-                                children: <Widget>[
-                                  Text("Description:",
-                                      style: textBodyMediumBold),
-                                  Text(
-                                      widget.projectDetails['description_long'],
-                                      style: textBodySmall),
-                                  Text("Takeaways:", style: textBodyMediumBold),
-                                  Text(
-                                      " - " +
-                                          widget.projectDetails['takeaways']
-                                              .join('\n - '),
-                                      style: textBodySmall)
-                                ],
-                              ))),
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text("Description:",
+                                          style: textBodyMediumBold),
+                                      Text(
+                                          widget.projectDetails[
+                                              'description_long'],
+                                          style: textBodySmall),
+                                      SizedBox(height: 20.0),
+                                      Text("Takeaways:",
+                                          style: textBodyMediumBold),
+                                      Text(
+                                          " - ${widget.projectDetails['takeaways'].join('\n - ')}",
+                                          style: textBodySmall)
+                                    ],
+                                  ))),
                         ],
                       ),
                     )
