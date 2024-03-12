@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/myAppBar.dart';
 import 'package:portfolio_app/theme/theme_constants.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class ProjectDetailsPage extends StatefulWidget {
   Map<String, dynamic> projectDetails;
@@ -16,6 +17,9 @@ class ProjectDetailsPage extends StatefulWidget {
 class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   @override
   Widget build(BuildContext context) {
+    List<String> imgPaths =
+        List<String>.from(widget.projectDetails['img_paths'] as List);
+
     return Scaffold(
       appBar: MyAppBar(context, "Projects", true), // add back navigation arrow
       body: Center(
@@ -80,6 +84,27 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                           style: textBodyMediumBold),
                                       Text("https:/github.com/projectApp",
                                           style: textBodySmall),
+                                      CarouselSlider(
+                                          options: CarouselOptions(
+                                            autoPlay: true,
+                                          ),
+                                          items: imgPaths.map((i) {
+                                            return Image.asset(i);
+                                          }).toList()),
+
+                                      //   return Builder(
+                                      //     builder: (BuildContext context) {
+                                      //       return Container(
+                                      //           width: MediaQuery.of(context)
+                                      //               .size
+                                      //               .width,
+                                      //           // margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                      //           // decoration: BoxDecoration(color: COLOR_ACCENT),
+                                      //           child: Image.asset(i));
+                                      //     },
+                                      //   );
+                                      // }).toList(),
+                                      // ),
                                     ],
                                   ))),
                           Expanded(
