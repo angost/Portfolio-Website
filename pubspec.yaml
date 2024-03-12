@@ -36,4 +36,5 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/projects/
     - assets/projectsData.json

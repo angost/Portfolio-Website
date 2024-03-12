@@ -36,7 +36,7 @@ class ProjectCardBack extends Card {
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromRGBO(227, 203, 214, 1),
-                      foregroundColor: Color.fromRGBO(191, 166, 178, 1),
+                      foregroundColor: Color.fromRGBO(201, 116, 149, 0.5),
                       textStyle: textButtons,
                       shadowColor: Colors.transparent),
                   child: Text(

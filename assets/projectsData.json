@@ -51,7 +51,7 @@
         {
             "name": "Introduction to Artificial Intelligence (WSI labs)",
             "description_short": "Knapsack problem, Gradient descent, Genetic and Evolutionary algorithms, Two-person games, ID3, Artificial neural networks.",
-            "description_long": "Series of practical laboratories for a university class. All of the exercises were implementing knowledge from the lectures, required implementing an algorithm and testing, observing how its parameters influence the quality of the result (with utilization of plots). Topics in detail: 1. Knapsack problem - using profit/weight heuristic 2. Gradient descent - finding function optimum (minimum) using simple gradient descent method 3. Genetic and Evolutionary algorithms - finding function minimum with genetic algorithm; implementing chromosomes, genes, mutations, single-point crossover 4. Two-person games - minmax algorithm with alpha-beta-pruning used on a ConnectFour game 5. ID3 - using decision trees for Iris dataset classification 6. Artificial neural networks - implementing neurons, layers (tanh and fully-connected), forward and backpropagation for MNIST written numbers dataset",
+            "description_long": "Series of practical laboratories for a university class. All of the exercises were implementing knowledge from the lectures, required implementing an algorithm and testing, observing how its parameters influence the quality of the result (with utilization of plots). Topics in detail: \n1. Knapsack problem - using profit/weight heuristic \n2. Gradient descent - finding function optimum (minimum) using simple gradient descent method \n3. Genetic and Evolutionary algorithms - finding function minimum with genetic algorithm; implementing chromosomes, genes, mutations, single-point crossover \n4. Two-person games - minmax algorithm with alpha-beta-pruning used on a ConnectFour game \n5. ID3 - using decision trees for Iris dataset classification \n6. Artificial neural networks - implementing neurons, layers (tanh and fully-connected), forward and backpropagation for MNIST written numbers dataset",
             "img_paths": ["assets/images/wsi.png"],
             "technologies": ["Python", "AI", "Numpy", "Matplotlib", "Google Colab, Jupyter Notebook"],
             "github_link": "",
@@ -61,15 +61,27 @@
             "other": []
         },
         {
-            "name": "Flood fill in Assembly",
+            "name": "Flood fill in RISC-V Assembly",
             "description_short": "Modify raster image by coloring an area. Made in Assembly for RISC-V.",
-            "description_long": "",
-            "img_paths": ["assets/images/pixels.png"],
-            "technologies": ["Python", "AI"],
+            "description_long": "Project for Computer Architecture course, concluding the learning of RISC-V Assembly and RARS simulator. There's access to 31 registers, with instructions and pseudoinstructions like loading ans storing, arithmetic and logical (with register/with immidiate), conditional and unconditional jumps, environment calls, using stack and dynamic allocation.\nThe goal was getting a small (e.g. 4x8, 20x20 pixels) raster image (its path), picking starting pixel (x,y coordinates) and color to paint the are with (R,G,B), processing it and returning modified image.\nImage format was a 24-bit bitmap, with 1 Byte for representing each of R,G,B components. Working with bitmap images required analising the structure of a file (header, DIB header, pixel array, padding).\nImplementing iterative flood fill algorithm: Given coordinates of starting pixel, add bordering pixels to queue. For each pixel in queue, if it's in the same color as starting pixel, recolor it and add bordering pixels to queue. Remove analized pixel from queue.",
+            "img_paths": ["assets/images/projects/riscv_code.png", "assets/images/projects/riscv_colors.png", "assets/images/projects/riscv_binaryfile.png", "assets/images/projects/riscv_littleendian.png", "assets/images/projects/riscv_results.png"],
+            "technologies": ["Assembly"],
             "github_link": "",
             "people_no": "solo",
             "goal": "university",
-            "takeaways": [""],
+            "takeaways": ["programming in RISC-V Assebly", "working with bitmaps, their file structure", "reading binary form of a bitmap file (using hexed.it, little endian convention)"],
+            "other": []
+          },
+          {
+            "name": "Alpha blending in x86-64 Assembly",
+            "description_short": "Blending 2 raster images together (in a sinus pattern) using x86 Assembly.",
+            "description_long": "Program in C and x86-64 Assebly (NASM). In main.c I included Allegro library, prepared 2 source images as arrays of pixels, promted user for x,y coordinates of the reference point and called assembly funtion implemented in f.s.\nIt processes every pixel in first image and calculates its distance from the reference point. Based on that it calculates proper opacity (trasparentcy/opacity levels are spread in circles around the reference point) = alpha value of the first picture's pixel. It then combines it with a corresponding pixel from the second image (calculates final pixel value based on both RGB values and the alpha).\nThe program uses floating-point operations, like fsin instruction, registers, loading and storing operations, jumps, comparing instructions, is compliant with the x86 calling convention.",
+            "img_paths": ["assets/images/projects/x86_result.png", "assets/images/projects/x86_code.png", "assets/images/projects/x86_gdb.png", "assets/images/projects/x86_registers.png", "assets/images/projects/x86_step1.png", "assets/images/projects/x86_step2.png", "assets/images/projects/x86_step3.png", "assets/images/projects/x86_step4.png"],
+            "technologies": ["Assembly", "C", "gcc compiler", "gdb debugger"],
+            "github_link": "",
+            "people_no": "solo",
+            "goal": "university",
+            "takeaways": ["programming in x86-64 Assebly", "using and compiling C code as a hybrid mixed with assembly", "working with raster images"],
             "other": []
           },
           {
@@ -149,18 +161,6 @@
             "description_short": "Recreation of a logical puzzle game with board generation and user interaction.",
             "description_long": "",
             "img_paths": ["assets/images/aisdi.png"],
-            "technologies": ["Python", "AI"],
-            "github_link": "",
-            "people_no": "solo",
-            "goal": "university",
-            "takeaways": [""],
-            "other": []
-          },
-          {
-            "name": "Alpha blending Assembly x86",
-            "description_short": "Recreation of a logical puzzle game with board generation and user interaction.",
-            "description_long": "",
-            "img_paths": ["assets/images/x86.png"],
             "technologies": ["Python", "AI"],
             "github_link": "",
             "people_no": "solo",
