@@ -24,7 +24,7 @@ class ProjectCardBack extends Card {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       PageRouteBuilder(
                         pageBuilder: (context, animation1, animation2) =>
