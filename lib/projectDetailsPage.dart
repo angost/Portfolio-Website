@@ -27,7 +27,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                   left: 60.0, right: 60.0, top: 40.0, bottom: 40.0),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.white,
+                  color: Color.fromRGBO(250, 250, 250, 1),
                   border: Border.all(
                       width: 3, color: Theme.of(context).primaryColor)),
               child: Column(
@@ -61,15 +61,45 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                             color: Theme.of(context)
                                                 .primaryColor)),
                                   ),
-                                  child: Text(
-                                      widget.projectDetails['technologies'][0],
-                                      style: textBodySmall))),
+                                  child: Column(
+                                    children: <Widget>[
+                                      Text("Technologies:",
+                                          style: textBodyMediumBold),
+                                      Text(
+                                          widget.projectDetails['technologies']
+                                              .join(", \n"),
+                                          style: textBodySmall),
+                                      Text("People no:",
+                                          style: textBodyMediumBold),
+                                      Text(widget.projectDetails['people_no'],
+                                          style: textBodySmall),
+                                      Text("Goal:", style: textBodyMediumBold),
+                                      Text(widget.projectDetails['goal'],
+                                          style: textBodySmall),
+                                      Text("Github link:",
+                                          style: textBodyMediumBold),
+                                      Text("https:/github.com/projectApp",
+                                          style: textBodySmall),
+                                    ],
+                                  ))),
                           Expanded(
                               flex: 3,
                               child: Container(
-                                  child: Text(
+                                  child: Column(
+                                children: <Widget>[
+                                  Text("Description:",
+                                      style: textBodyMediumBold),
+                                  Text(
                                       widget.projectDetails['description_long'],
-                                      style: textBodySmall)))
+                                      style: textBodySmall),
+                                  Text("Takeaways:", style: textBodyMediumBold),
+                                  Text(
+                                      " - " +
+                                          widget.projectDetails['takeaways']
+                                              .join('\n - '),
+                                      style: textBodySmall)
+                                ],
+                              ))),
                         ],
                       ),
                     )
