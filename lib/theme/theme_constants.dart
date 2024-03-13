@@ -22,3 +22,5 @@ TextStyle textBodyMediumBold = const TextStyle(
 TextStyle textBodySmall = const TextStyle(fontFamily: 'DM Mono', fontSize: 14);
 TextStyle textButtons =
     const TextStyle(fontFamily: 'DM Serif Text', fontSize: 18);
+TextStyle textBodyFancy =
+    const TextStyle(fontFamily: 'DM Serif Text', fontSize: 24);
