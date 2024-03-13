@@ -14,7 +14,7 @@ class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(context, "Contact"),
+      appBar: MyAppBar(context, "Contact", false),
       body: Center(
         child: Text('Hello World!'),
       ),
