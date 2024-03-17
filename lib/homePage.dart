@@ -40,11 +40,6 @@ class _HomePageState extends State<HomePage> {
                 width: 50,
               ),
               Expanded(
-                  flex: 1, child: Image.asset('assets/images/my_photo2.png')),
-              SizedBox(
-                width: 50,
-              ),
-              Expanded(
                 flex: 2,
                 child: Column(children: <Widget>[
                   Text(
@@ -136,6 +131,11 @@ class _HomePageState extends State<HomePage> {
                       ]),
                 ]),
               ),
+              SizedBox(
+                width: 50,
+              ),
+              Expanded(
+                  flex: 1, child: Image.asset('assets/images/my_photo2.png')),
               SizedBox(
                 width: 50,
               ),
