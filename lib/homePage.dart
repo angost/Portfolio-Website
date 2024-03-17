@@ -51,73 +51,89 @@ class _HomePageState extends State<HomePage> {
                     "Hello",
                     style: textBodyFancy,
                   ),
-                  Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales purus ac felis vestibulum, non convallis orci gravida. Nam et diam ac dui maximus laoreet tempus nec justo. Cras sed diam vel libero scelerisque interdum non ut lectus. Pellentesque mattis ex ut sapien tincidunt interdum. Vestibulum ac bibendum arcu. Ut ut dui in dolor pharetra sodales. Suspendisse potenti. Curabitur aliquam elit sed ligula sagittis scelerisque. Duis sodales interdum risus id tempor. Maecenas pulvinar odio ex, eu efficitur nisl convallis a. In eget nisl arcu. Donec facilisis ipsum quis orci mollis interdum sit amet ut libero. Sed eget nunc lectus. Cras vel aliquet nisi."),
-                  Text(
-                      "Aenean facilisis sapien sapien, eget luctus tellus feugiat eget. Nunc vel pellentesque eros. Duis feugiat dapibus elit sed scelerisque. Curabitur venenatis sollicitudin tempus. Phasellus ut finibus massa, a efficitur augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lacinia volutpat massa at sodales. Duis in neque faucibus, rhoncus justo molestie, consequat neque. Integer fermentum a lacus vitae imperdiet."),
-                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                    Text(
-                      "Check my projects",
-                      style: textBodyFancy,
-                    ),
-                    SizedBox(width: 20),
-                    ClipOval(
-                        child: Container(
-                            color: Color.fromRGBO(201, 116, 149, 0.5),
-                            child: IconButton(
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  PageRouteBuilder(
-                                    pageBuilder:
-                                        (context, animation1, animation2) =>
-                                            ProjectsPage(),
-                                    transitionDuration: Duration.zero,
-                                    reverseTransitionDuration: Duration.zero,
-                                  ),
-                                );
-                              },
-                              icon: Image.asset(
-                                "assets/images/sparkles.png",
-                                width: 30,
-                                height: 30,
-                              ),
-                              hoverColor: Color.fromRGBO(201, 116, 149, 0.5),
-                              highlightColor: Colors.transparent,
-                            )))
-                  ]),
                   SizedBox(height: 20),
-                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                    Text(
-                      "Contact me",
-                      style: textBodyFancy,
-                    ),
-                    SizedBox(width: 20),
-                    ClipOval(
-                        child: Container(
-                            color: Color.fromRGBO(201, 116, 149, 0.5),
-                            child: IconButton(
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  PageRouteBuilder(
-                                    pageBuilder:
-                                        (context, animation1, animation2) =>
-                                            ContactPage(),
-                                    transitionDuration: Duration.zero,
-                                    reverseTransitionDuration: Duration.zero,
+                  Text(
+                      "I am a 2nd year Computer Science student at Warsaw University of Technology, I am active, abitious and dedicated."),
+                  SizedBox(height: 15),
+                  Text(
+                      "During my studies I have learnt a lot and completed many projects, either group or solo, for university assigments or personal use. I get very passionate about them, ready to put my time and effort into creating them."),
+                  SizedBox(height: 15),
+                  Text(
+                      "Summer internship is something I am currently looking for, an opportunity to showcase my skills in an interesting job."),
+                  SizedBox(height: 20),
+                  Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Check my projects",
+                          style: textBodyFancy,
+                        ),
+                        SizedBox(width: 20),
+                        ClipOval(
+                            child: Container(
+                                color: Color.fromRGBO(201, 116, 149, 0.5),
+                                child: IconButton(
+                                  onPressed: () {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder:
+                                            (context, animation1, animation2) =>
+                                                ProjectsPage(),
+                                        transitionDuration: Duration.zero,
+                                        reverseTransitionDuration:
+                                            Duration.zero,
+                                      ),
+                                    );
+                                  },
+                                  icon: Image.asset(
+                                    "assets/images/sparkles.png",
+                                    width: 30,
+                                    height: 30,
                                   ),
-                                );
-                              },
-                              icon: Icon(
-                                Icons.work,
-                                size: 30,
-                                color: Colors.black,
-                              ),
-                              hoverColor: Color.fromRGBO(201, 116, 149, 0.5),
-                              highlightColor: Colors.transparent,
-                            )))
-                  ]),
+                                  hoverColor:
+                                      Color.fromRGBO(201, 116, 149, 0.5),
+                                  highlightColor: Colors.transparent,
+                                )))
+                      ]),
+                  SizedBox(height: 20),
+                  Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Contact me",
+                          style: textBodyFancy,
+                        ),
+                        SizedBox(width: 20),
+                        ClipOval(
+                            child: Container(
+                                color: Color.fromRGBO(201, 116, 149, 0.5),
+                                child: IconButton(
+                                  onPressed: () {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder:
+                                            (context, animation1, animation2) =>
+                                                ContactPage(),
+                                        transitionDuration: Duration.zero,
+                                        reverseTransitionDuration:
+                                            Duration.zero,
+                                      ),
+                                    );
+                                  },
+                                  icon: Icon(
+                                    Icons.work,
+                                    size: 30,
+                                    color: Colors.black,
+                                  ),
+                                  hoverColor:
+                                      Color.fromRGBO(201, 116, 149, 0.5),
+                                  highlightColor: Colors.transparent,
+                                )))
+                      ]),
                 ]),
               ),
               SizedBox(
