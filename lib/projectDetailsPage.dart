@@ -7,6 +7,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 class ProjectDetailsPage extends StatefulWidget {
   Map<String, dynamic> projectDetails;
+  double paragraphDistance = 7;
+  double titleContentDistance = 5;
+  double sectionDistance = 20;
 
   ProjectDetailsPage(this.projectDetails, {super.key});
 
@@ -19,6 +22,17 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   Widget build(BuildContext context) {
     List<String> imgPaths =
         List<String>.from(widget.projectDetails['img_paths'] as List);
+
+    List<String> descriptionParagraphs =
+        widget.projectDetails['description_long'].split('\n');
+    List<Widget> descriptionParts = <Widget>[];
+    for (var paragraph in descriptionParagraphs) {
+      descriptionParts.add(Text(paragraph, style: textBodySmall));
+      descriptionParts.add(SizedBox(
+        height: widget.paragraphDistance,
+      ));
+    }
+    descriptionParts.removeLast();
 
     return Scaffold(
       appBar: MyAppBar(context, "Projects", true), // add back navigation arrow
@@ -130,25 +144,29 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                           Expanded(
                               flex: 3,
                               child: Container(
-                                  padding: EdgeInsets.all(30.0),
+                                  padding: EdgeInsets.only(
+                                      top: 30, bottom: 30, left: 30, right: 30),
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text("Description:",
-                                          style: textBodyMediumBold),
-                                      Text(
-                                          widget.projectDetails[
-                                              'description_long'],
-                                          style: textBodySmall),
-                                      SizedBox(height: 20.0),
-                                      Text("Takeaways:",
-                                          style: textBodyMediumBold),
-                                      Text(
-                                          " - ${widget.projectDetails['takeaways'].join('\n - ')}",
-                                          style: textBodySmall)
-                                    ],
-                                  ))),
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                            Text("Description:",
+                                                style: textBodyMediumBold),
+                                            SizedBox(
+                                              height:
+                                                  widget.titleContentDistance,
+                                            )
+                                          ] +
+                                          descriptionParts +
+                                          <Widget>[
+                                            SizedBox(
+                                                height: widget.sectionDistance),
+                                            Text("Takeaways:",
+                                                style: textBodyMediumBold),
+                                            Text(
+                                                " - ${widget.projectDetails['takeaways'].join('\n - ')}",
+                                                style: textBodySmall)
+                                          ]))),
                         ],
                       ),
                     )
