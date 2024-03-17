@@ -8,8 +8,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 class ProjectDetailsPage extends StatefulWidget {
   Map<String, dynamic> projectDetails;
   double paragraphDistance = 7;
-  double titleContentDistance = 5;
-  double sectionDistance = 20;
+  double titleContentDistanceMain = 5;
+  double titleContentDistanceMetadata = 3;
+  double sectionDistanceMain = 20;
+  double sectionDistanceMetadata = 15;
 
   ProjectDetailsPage(this.projectDetails, {super.key});
 
@@ -82,34 +84,70 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                                 .primaryColor)),
                                   ),
                                   child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      SizedBox(height: 20.0),
                                       Padding(
-                                          padding: EdgeInsets.only(left: 20.0),
+                                          padding: EdgeInsets.only(
+                                              top: 30, left: 25.0),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: <Widget>[
                                               Text("Technologies:",
                                                   style: textBodyMediumBold),
+                                              SizedBox(
+                                                  height: widget
+                                                      .titleContentDistanceMetadata),
                                               Text(
                                                   widget.projectDetails[
                                                           'technologies']
-                                                      .join(", \n"),
+                                                      .join(", "),
                                                   style: textBodySmall),
-                                              Text("People no:",
+                                              SizedBox(
+                                                  height: widget
+                                                      .sectionDistanceMetadata),
+                                              RichText(
+                                                text: TextSpan(
+                                                  children: <TextSpan>[
+                                                    TextSpan(
+                                                        text: 'People no: ',
+                                                        style:
+                                                            textBodyMediumBold),
+                                                    TextSpan(
+                                                        text: widget
+                                                                .projectDetails[
+                                                            'people_no'],
+                                                        style: textBodySmall),
+                                                  ],
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                  height: widget
+                                                      .sectionDistanceMetadata),
+                                              RichText(
+                                                text: TextSpan(
+                                                  children: <TextSpan>[
+                                                    TextSpan(
+                                                        text: 'Goal: ',
+                                                        style:
+                                                            textBodyMediumBold),
+                                                    TextSpan(
+                                                        text: widget
+                                                                .projectDetails[
+                                                            'goal'],
+                                                        style: textBodySmall),
+                                                  ],
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                  height: widget
+                                                      .sectionDistanceMetadata),
+                                              Text("Github:",
                                                   style: textBodyMediumBold),
-                                              Text(
-                                                  widget.projectDetails[
-                                                      'people_no'],
-                                                  style: textBodySmall),
-                                              Text("Goal:",
-                                                  style: textBodyMediumBold),
-                                              Text(
-                                                  widget.projectDetails['goal'],
-                                                  style: textBodySmall),
-                                              Text("Github link:",
-                                                  style: textBodyMediumBold),
+                                              SizedBox(
+                                                  height: widget
+                                                      .titleContentDistanceMetadata),
                                               Text(
                                                   "https:/github.com/projectApp",
                                                   style: textBodySmall),
@@ -145,7 +183,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                               flex: 3,
                               child: Container(
                                   padding: EdgeInsets.only(
-                                      top: 30, bottom: 30, left: 30, right: 30),
+                                      top: 30, bottom: 30, left: 70, right: 70),
                                   child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -153,14 +191,15 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                             Text("Description:",
                                                 style: textBodyMediumBold),
                                             SizedBox(
-                                              height:
-                                                  widget.titleContentDistance,
+                                              height: widget
+                                                  .titleContentDistanceMain,
                                             )
                                           ] +
                                           descriptionParts +
                                           <Widget>[
                                             SizedBox(
-                                                height: widget.sectionDistance),
+                                                height:
+                                                    widget.sectionDistanceMain),
                                             Text("Takeaways:",
                                                 style: textBodyMediumBold),
                                             Text(
