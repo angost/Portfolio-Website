@@ -154,29 +154,33 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                             ],
                                           )),
                                       SizedBox(height: 20.0),
-                                      CarouselSlider(
-                                          options: CarouselOptions(
+                                      Expanded(
+                                        child: CarouselSlider(
+                                            options: CarouselOptions(
                                               autoPlay: true,
                                               autoPlayInterval:
-                                                  Duration(seconds: 4)),
-                                          items: imgPaths.map((i) {
-                                            return Builder(
-                                              builder: (BuildContext context) {
-                                                return Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    margin:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 5.0),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.transparent,
-                                                    ),
-                                                    child: Image.asset(i));
-                                              },
-                                            );
-                                          }).toList()),
+                                                  Duration(seconds: 4),
+                                              viewportFraction: 1.0,
+                                              enlargeCenterPage: false,
+                                            ),
+                                            items: imgPaths.map((i) {
+                                              return Builder(
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return Container(
+                                                      margin:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 0),
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.amber,
+                                                      ),
+                                                      child: Image.asset(
+                                                        i,
+                                                      ));
+                                                },
+                                              );
+                                            }).toList()),
+                                      ),
                                     ],
                                   ))),
                           Expanded(
