@@ -13,6 +13,8 @@ class ProjectDetailsPage extends StatefulWidget {
   double sectionDistanceMain = 20;
   double sectionDistanceMetadata = 15;
 
+  double scrollBarPadding = 30;
+
   ProjectDetailsPage(this.projectDetails, {super.key});
 
   @override
@@ -188,29 +190,41 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                               flex: 3,
                               child: Container(
                                   padding: EdgeInsets.only(
-                                      top: 30, bottom: 30, left: 70, right: 70),
-                                  child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                            Text("Description:",
-                                                style: textBodyMediumBold),
-                                            SizedBox(
-                                              height: widget
-                                                  .titleContentDistanceMain,
-                                            )
-                                          ] +
-                                          descriptionParts +
-                                          <Widget>[
-                                            SizedBox(
-                                                height:
-                                                    widget.sectionDistanceMain),
-                                            Text("Takeaways:",
-                                                style: textBodyMediumBold),
-                                            Text(
-                                                " - ${widget.projectDetails['takeaways'].join('\n - ')}",
-                                                style: textBodySmall)
-                                          ]))),
+                                      top: 30,
+                                      bottom: 30,
+                                      left: 70,
+                                      right: 70 - widget.scrollBarPadding),
+                                  child: Scrollbar(
+                                    thumbVisibility: true,
+                                    interactive: false,
+                                    child: SingleChildScrollView(
+                                      physics: ScrollPhysics(),
+                                      padding: EdgeInsets.only(
+                                          right: widget.scrollBarPadding),
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                                Text("Description:",
+                                                    style: textBodyMediumBold),
+                                                SizedBox(
+                                                  height: widget
+                                                      .titleContentDistanceMain,
+                                                )
+                                              ] +
+                                              descriptionParts +
+                                              <Widget>[
+                                                SizedBox(
+                                                    height: widget
+                                                        .sectionDistanceMain),
+                                                Text("Takeaways:",
+                                                    style: textBodyMediumBold),
+                                                Text(
+                                                    " - ${widget.projectDetails['takeaways'].join('\n - ')}",
+                                                    style: textBodySmall)
+                                              ]),
+                                    ),
+                                  ))),
                         ],
                       ),
                     )
