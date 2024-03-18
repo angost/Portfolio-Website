@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/menu.dart';
+import 'package:portfolio_app/homePage.dart';
 import 'package:portfolio_app/projectsPage.dart';
 import 'package:portfolio_app/theme/theme_constants.dart';
 
@@ -11,8 +12,21 @@ class MyAppBar extends AppBar {
   bool backArrow;
   MyAppBar(this.context, this.currentPage, this.backArrow, {super.key})
       : super(
-            title: Text("Angelika Ostrowska",
-                style: Theme.of(context).textTheme.displayMedium),
+            title: TextButton(
+              style: ButtonStyle(
+                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  padding: MaterialStateProperty.all(EdgeInsets.zero)),
+              onPressed: () => Navigator.pushReplacement(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => HomePage(),
+                  transitionDuration: Duration.zero,
+                  reverseTransitionDuration: Duration.zero,
+                ),
+              ),
+              child: Text("Angelika Ostrowska",
+                  style: Theme.of(context).textTheme.displayMedium),
+            ),
             automaticallyImplyLeading: backArrow,
             leading: backArrow == true
                 ? IconButton(
