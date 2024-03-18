@@ -12,8 +12,7 @@ class ProjectDetailsPage extends StatefulWidget {
   double titleContentDistanceMetadata = 3;
   double sectionDistanceMain = 20;
   double sectionDistanceMetadata = 15;
-
-  double scrollBarPadding = 30;
+  double scrollBarPadding = 0;
 
   ProjectDetailsPage(this.projectDetails, {super.key});
 
@@ -24,6 +23,10 @@ class ProjectDetailsPage extends StatefulWidget {
 class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   @override
   Widget build(BuildContext context) {
+    double windowWidth = MediaQuery.of(context).size.width;
+    double windowHeight = MediaQuery.of(context).size.height;
+    widget.scrollBarPadding = windowWidth / 50;
+
     List<String> imgPaths =
         List<String>.from(widget.projectDetails['img_paths'] as List);
 
@@ -45,8 +48,11 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
         children: <Widget>[
           Expanded(
             child: Container(
-              margin: const EdgeInsets.only(
-                  left: 60.0, right: 60.0, top: 40.0, bottom: 40.0),
+              margin: EdgeInsets.only(
+                  left: windowWidth / 25,
+                  right: windowWidth / 25,
+                  top: windowHeight / 20,
+                  bottom: windowHeight / 20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   color: Color.fromRGBO(250, 250, 250, 1),
@@ -192,8 +198,9 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                   padding: EdgeInsets.only(
                                       top: 30,
                                       bottom: 30,
-                                      left: 70,
-                                      right: 70 - widget.scrollBarPadding),
+                                      left: windowWidth / 22,
+                                      right: windowWidth / 22 -
+                                          widget.scrollBarPadding),
                                   child: Scrollbar(
                                     thumbVisibility: true,
                                     interactive: false,
@@ -233,7 +240,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
           ),
           Container(
             color: Color.fromRGBO(217, 217, 217, 1),
-            height: 50,
+            height: windowHeight / 15,
           )
         ],
       )),
