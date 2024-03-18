@@ -69,9 +69,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
                   child: FlipCard(
                     controller: controller,
                     fill: Fill
-                        .fillBack, // Fill the back side of the card to make in the same size as the front.
-                    direction: FlipDirection.HORIZONTAL, // default
-                    side: CardSide.FRONT, // The side to initially display.
+                        .fillBack,
+                    direction: FlipDirection.HORIZONTAL,
+                    side: CardSide.FRONT,
                     front: ProjectCardFront(
                         context,
                         projectsData[index]['name'],

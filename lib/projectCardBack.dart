@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/projectDetailsPage.dart';
 import 'package:portfolio_app/theme/theme_constants.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class ProjectCardBack extends Card {
   BuildContext context;
@@ -17,9 +18,10 @@ class ProjectCardBack extends Card {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: Text(
+                  child: AutoSizeText(
                     description,
                     style: textBodySmall,
+                    maxLines: 3,
                   ),
                 ),
                 ElevatedButton(
@@ -35,8 +37,8 @@ class ProjectCardBack extends Card {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(227, 203, 214, 1),
-                      foregroundColor: Color.fromRGBO(201, 116, 149, 0.5),
+                      backgroundColor: const Color.fromRGBO(227, 203, 214, 1),
+                      foregroundColor: const Color.fromRGBO(201, 116, 149, 0.5),
                       textStyle: textButtons,
                       shadowColor: Colors.transparent),
                   child: Text(
