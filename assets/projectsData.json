@@ -185,7 +185,7 @@
         "name": "C++ exercises (PROI labs)",
         "description_short": "Learning about inheritance, abstract classes, and other C++ concepts",
         "description_long": "",
-        "img_paths": ["assets/images/proi_files.png"],
+        "img_paths": ["assets/images/projects/proi_files.png"],
         "technologies": ["C++"],
         "github_link": "https://github.com/angost/PROI-laby.git",
         "people_no": "solo",
