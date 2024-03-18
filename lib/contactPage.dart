@@ -19,7 +19,7 @@ class _ContactPageState extends State<ContactPage> {
     return Scaffold(
       appBar: MyAppBar(context, "Contact", false, windowWidth > windowHeight),
       body: Center(
-        child: Text('Hello World!'),
+        child: Text('angelikaostrowska@poczta.onet.pl'),
       ),
     );
   }
