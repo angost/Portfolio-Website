@@ -99,15 +99,18 @@ class _HomePageState extends State<HomePage> {
     } else {
       // VERTICAL MODE
       return Scaffold(
-        appBar: MyAppBar(context, "Home", false, false),
+        appBar: MyAppBar(context, "Home", false, false), //suma = 6/25
         body: Center(
             child: Padding(
-          padding:
-              const EdgeInsets.only(top: 30, bottom: 70, left: 20, right: 20),
+          padding: EdgeInsets.only(
+              top: windowHeight * 20 / 250,
+              bottom: windowHeight * 10 / 250,
+              left: 20,
+              right: 20),
           child: Column(
             children: <Widget>[
-              Expanded(
-                flex: 1,
+              Container(
+                height: windowHeight * 9 / 50,
                 child: Row(
                   children: <Widget>[
                     Expanded(
@@ -119,16 +122,19 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              Expanded(
-                flex: 2,
+              Container(
+                height: windowHeight * 10 / 25,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: aboutMeText,
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: actionButtons,
+              Container(
+                height: windowHeight * 5 / 25,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: actionButtons,
+                ),
               ),
             ],
           ),
