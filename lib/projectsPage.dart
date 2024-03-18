@@ -41,7 +41,6 @@ class _ProjectsPageState extends State<ProjectsPage> {
   Widget build(BuildContext context) {
     double windowWidth = MediaQuery.of(context).size.width;
     double windowHeight = MediaQuery.of(context).size.height;
-    // widget.scrollBarPadding = windowWidth / 50;
 
     return Scaffold(
       appBar: MyAppBar(context, "Projects", false),
