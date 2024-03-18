@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_app/myAppBar.dart';
 import 'package:portfolio_app/theme/theme_constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProjectDetailsPage extends StatefulWidget {
   Map<String, dynamic> projectDetails;
@@ -40,6 +41,9 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
       ));
     }
     descriptionParts.removeLast();
+
+    Uri githubLink =
+        Uri(scheme: "", host: "", path: widget.projectDetails['github_link']);
 
     return Scaffold(
       appBar: MyAppBar(context, "Projects", true,
@@ -157,14 +161,18 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                               SizedBox(
                                                   height: widget
                                                       .titleContentDistanceMetadata),
-                                              Text(
-                                                  widget.projectDetails[
-                                                              'github_link'] !=
-                                                          ""
-                                                      ? widget.projectDetails[
-                                                          'github_link']
-                                                      : "-",
-                                                  style: textBodySmall),
+                                              InkWell(
+                                                  child: Text(
+                                                      widget.projectDetails[
+                                                          'github_link'],
+                                                      style: textBodySmall),
+                                                  onTap: () {
+                                                    if (widget.projectDetails[
+                                                            'github_link'] !=
+                                                        "") {
+                                                      launchUrl(githubLink);
+                                                    }
+                                                  }),
                                             ],
                                           )),
                                       SizedBox(height: 20.0),
