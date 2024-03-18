@@ -172,7 +172,8 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                                           EdgeInsets.symmetric(
                                                               horizontal: 0),
                                                       decoration: BoxDecoration(
-                                                        color: Colors.amber,
+                                                        color:
+                                                            Colors.transparent,
                                                       ),
                                                       child: Image.asset(
                                                         i,
