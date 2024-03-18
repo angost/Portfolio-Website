@@ -39,6 +39,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
   @override
   Widget build(BuildContext context) {
+    double windowWidth = MediaQuery.of(context).size.width;
+    double windowHeight = MediaQuery.of(context).size.height;
+    // widget.scrollBarPadding = windowWidth / 50;
+
     return Scaffold(
       appBar: MyAppBar(context, "Projects", false),
       body: Center(
@@ -46,11 +50,12 @@ class _ProjectsPageState extends State<ProjectsPage> {
         children: <Widget>[
           Flexible(
             child: GridView.extent(
-              maxCrossAxisExtent: 300,
+              maxCrossAxisExtent: 400,
               childAspectRatio: (5 / 4),
-              padding: EdgeInsets.only(top: 20, left: 100, right: 100),
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 40,
+              padding: EdgeInsets.only(
+                  top: 20, left: windowWidth / 15, right: windowWidth / 15),
+              mainAxisSpacing: windowHeight / 36,
+              crossAxisSpacing: windowWidth / 38,
               children: List.generate(projectsData.length, (index) {
                 FlipCardController controller = FlipCardController();
 
