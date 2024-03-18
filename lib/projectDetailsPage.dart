@@ -158,7 +158,12 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                                   height: widget
                                                       .titleContentDistanceMetadata),
                                               Text(
-                                                  "https:/github.com/projectApp",
+                                                  widget.projectDetails[
+                                                              'github_link'] !=
+                                                          ""
+                                                      ? widget.projectDetails[
+                                                          'github_link']
+                                                      : "-",
                                                   style: textBodySmall),
                                             ],
                                           )),
