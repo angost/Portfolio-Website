@@ -43,7 +43,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
     double windowHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: MyAppBar(context, "Projects", false),
+      appBar: MyAppBar(context, "Projects", false, windowWidth > windowHeight),
       body: Center(
           child: Column(
         children: <Widget>[

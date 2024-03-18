@@ -42,7 +42,8 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
     descriptionParts.removeLast();
 
     return Scaffold(
-      appBar: MyAppBar(context, "Projects", true), // add back navigation arrow
+      appBar: MyAppBar(context, "Projects", true,
+          windowWidth > windowHeight), // add back navigation arrow
       body: Center(
           child: Column(
         children: <Widget>[

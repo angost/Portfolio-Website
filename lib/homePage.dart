@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
     if (windowWidth > windowHeight) {
       // HORIZONTAL MODE
       return Scaffold(
-        appBar: MyAppBar(context, "Home", false),
+        appBar: MyAppBar(context, "Home", false, true),
         body: Center(
             child: Column(
           children: <Widget>[
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
     } else {
       // VERTICAL MODE
       return Scaffold(
-        appBar: MyAppBar(context, "Home", false),
+        appBar: MyAppBar(context, "Home", false, false),
         body: Center(
             child: Padding(
           padding:
