@@ -111,7 +111,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                                 text: TextSpan(
                                                   children: <TextSpan>[
                                                     TextSpan(
-                                                        text: 'People no: ',
+                                                        text: 'Creators: ',
                                                         style:
                                                             textBodyMediumBold),
                                                     TextSpan(
