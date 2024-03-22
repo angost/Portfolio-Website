@@ -5,11 +5,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 class MetaDataSection extends StatefulWidget {
   Map<String, dynamic> projectDetails;
-  double titleContentDistanceMetadata;
-  double sectionDistanceMetadata;
-  MetaDataSection(this.projectDetails, this.titleContentDistanceMetadata,
-      this.sectionDistanceMetadata,
-      {super.key});
+  bool isViewHorizontal;
+  double titleContentDistanceMetadata = 3;
+  double sectionDistanceMetadata = 15;
+  MetaDataSection(this.projectDetails, this.isViewHorizontal, {super.key});
 
   @override
   State<MetaDataSection> createState() => _MetaDataSectionState();
@@ -24,9 +23,83 @@ class _MetaDataSectionState extends State<MetaDataSection> {
     List<String> imgPaths =
         List<String>.from(widget.projectDetails['img_paths'] as List);
 
-    return Expanded(
-        flex: 1,
-        child: Container(
+    CarouselSlider imagesSlider = CarouselSlider(
+        options: CarouselOptions(
+          autoPlay: true,
+          autoPlayInterval: const Duration(seconds: 4),
+          viewportFraction: 1.0,
+          enlargeCenterPage: false,
+        ),
+        items: imgPaths.map((i) {
+          return Builder(
+            builder: (BuildContext context) {
+              return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 0),
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                  child: Image.asset(
+                    i,
+                  ));
+            },
+          );
+        }).toList());
+
+    List<Widget> mainContent = <Widget>[
+      Text("Technologies:", style: textBodyMediumBold),
+      SizedBox(
+          height:
+              widget.isViewHorizontal ? widget.titleContentDistanceMetadata : 0,
+          width: widget.isViewHorizontal
+              ? 0
+              : widget.titleContentDistanceMetadata),
+      Text(widget.projectDetails['technologies'].join(", "),
+          style: textBodySmall),
+      SizedBox(
+          height: widget.isViewHorizontal ? widget.sectionDistanceMetadata : 0,
+          width: widget.isViewHorizontal ? 0 : widget.sectionDistanceMetadata),
+      RichText(
+        text: TextSpan(
+          children: <TextSpan>[
+            TextSpan(text: 'Creators: ', style: textBodyMediumBold),
+            TextSpan(
+                text: widget.projectDetails['people_no'], style: textBodySmall),
+          ],
+        ),
+      ),
+      SizedBox(
+          height: widget.isViewHorizontal ? widget.sectionDistanceMetadata : 0,
+          width: widget.isViewHorizontal ? 0 : widget.sectionDistanceMetadata),
+      RichText(
+        text: TextSpan(
+          children: <TextSpan>[
+            TextSpan(text: 'Goal: ', style: textBodyMediumBold),
+            TextSpan(text: widget.projectDetails['goal'], style: textBodySmall),
+          ],
+        ),
+      ),
+      SizedBox(
+          height: widget.isViewHorizontal ? widget.sectionDistanceMetadata : 0,
+          width: widget.isViewHorizontal ? 0 : widget.sectionDistanceMetadata),
+      Text("Github:", style: textBodyMediumBold),
+      SizedBox(
+          height:
+              widget.isViewHorizontal ? widget.titleContentDistanceMetadata : 0,
+          width: widget.isViewHorizontal
+              ? 0
+              : widget.titleContentDistanceMetadata),
+      githubLinkText != ""
+          ? InkWell(
+              child: Text(githubLinkText, style: textBodySmall),
+              onTap: () {
+                launchUrl(githubLink);
+              })
+          : const Text("-"),
+    ];
+
+    return widget.isViewHorizontal
+        // MetaDataSection is a Column on the left of the screen, if orientation is horizontal
+        ? Container(
             decoration: BoxDecoration(
               border: Border(
                   right: BorderSide(
@@ -39,75 +112,43 @@ class _MetaDataSectionState extends State<MetaDataSection> {
                     padding: const EdgeInsets.only(top: 30, left: 25.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text("Technologies:", style: textBodyMediumBold),
-                        SizedBox(height: widget.titleContentDistanceMetadata),
-                        Text(widget.projectDetails['technologies'].join(", "),
-                            style: textBodySmall),
-                        SizedBox(height: widget.sectionDistanceMetadata),
-                        RichText(
-                          text: TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: 'Creators: ',
-                                  style: textBodyMediumBold),
-                              TextSpan(
-                                  text: widget.projectDetails['people_no'],
-                                  style: textBodySmall),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: widget.sectionDistanceMetadata),
-                        RichText(
-                          text: TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: 'Goal: ', style: textBodyMediumBold),
-                              TextSpan(
-                                  text: widget.projectDetails['goal'],
-                                  style: textBodySmall),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: widget.sectionDistanceMetadata),
-                        Text("Github:", style: textBodyMediumBold),
-                        SizedBox(height: widget.titleContentDistanceMetadata),
-                        githubLinkText != ""
-                            ? InkWell(
-                                child:
-                                    Text(githubLinkText, style: textBodySmall),
-                                onTap: () {
-                                  launchUrl(githubLink);
-                                })
-                            : const Text("-"),
-                      ],
+                      children: mainContent,
                     )),
-                const SizedBox(height: 20.0),
+                SizedBox(
+                  height: widget.isViewHorizontal ? 20.0 : 0,
+                  width: widget.isViewHorizontal ? 0 : 20.0,
+                ),
                 Expanded(
-                  child: CarouselSlider(
-                      options: CarouselOptions(
-                        autoPlay: true,
-                        autoPlayInterval: const Duration(seconds: 4),
-                        viewportFraction: 1.0,
-                        enlargeCenterPage: false,
-                      ),
-                      items: imgPaths.map((i) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return Container(
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 0),
-                                decoration: const BoxDecoration(
-                                  color: Colors.transparent,
-                                ),
-                                child: Image.asset(
-                                  i,
-                                ));
-                          },
-                        );
-                      }).toList()),
+                  child: imagesSlider,
                 ),
               ],
-            )));
+            ))
+        // if orientation is vertical, MetaDataSection becomes a Row between Name and DescriptionSection
+        : Container(
+            decoration: BoxDecoration(
+              border: Border(
+                  bottom: BorderSide(
+                      width: 3, color: Theme.of(context).primaryColor)),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: mainContent,
+                  ),
+                ),
+                SizedBox(
+                  height: widget.isViewHorizontal ? 20.0 : 0,
+                  width: widget.isViewHorizontal ? 0 : 5.0,
+                ),
+                Expanded(
+                  flex: 2,
+                  child: imagesSlider,
+                ),
+              ],
+            ));
   }
 }

@@ -8,13 +8,6 @@ import 'package:portfolio_app/theme/theme_constants.dart';
 
 class ProjectDetailsPage extends StatefulWidget {
   Map<String, dynamic> projectDetails;
-  double paragraphDistance = 7;
-  double titleContentDistanceMain = 5;
-  double titleContentDistanceMetadata = 3;
-  double sectionDistanceMain = 20;
-  double sectionDistanceMetadata = 15;
-  double scrollBarPadding = 0;
-
   ProjectDetailsPage(this.projectDetails, {super.key});
 
   @override
@@ -26,7 +19,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   Widget build(BuildContext context) {
     double windowWidth = MediaQuery.of(context).size.width;
     double windowHeight = MediaQuery.of(context).size.height;
-    widget.scrollBarPadding = windowWidth / 50;
+    bool isViewHorizontal = windowWidth > windowHeight;
 
     return Scaffold(
       appBar: MyAppBar(context, "Projects", true, windowWidth > windowHeight),
@@ -66,33 +59,46 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                     ),
                     // PROJECT DETAILS SECTION
                     Expanded(
-                      flex: 9,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          // Metadata section
-                          MetaDataSection(
-                              widget.projectDetails,
-                              widget.titleContentDistanceMetadata,
-                              widget.sectionDistanceMetadata),
-                          // Description section
-                          DescriptionSection(
-                            widget.projectDetails,
-                            windowWidth,
-                            widget.paragraphDistance,
-                            widget.titleContentDistanceMain,
-                            widget.sectionDistanceMain,
-                            widget.scrollBarPadding,
-                          )
-                        ],
-                      ),
-                    )
+                        flex: 9,
+                        child: isViewHorizontal
+                            // MetaDataSection and DescriptionSection are in a Row in horizontal orientation
+                            ? Row(
+                                children: <Widget>[
+                                  Expanded(
+                                      flex: 1,
+                                      child: MetaDataSection(
+                                          widget.projectDetails,
+                                          isViewHorizontal)),
+                                  Expanded(
+                                    flex: 3,
+                                    child: DescriptionSection(
+                                        widget.projectDetails,
+                                        isViewHorizontal,
+                                        windowWidth),
+                                  )
+                                ],
+                              )
+                            // MetaDataSection and DescriptionSection are in a Column in vertical orientation
+                            : Scrollbar(
+                                thumbVisibility: true,
+                                interactive: false,
+                                child: SingleChildScrollView(
+                                    physics: ScrollPhysics(),
+                                    child: Column(children: <Widget>[
+                                      MetaDataSection(widget.projectDetails,
+                                          isViewHorizontal),
+                                      DescriptionSection(
+                                        widget.projectDetails,
+                                        isViewHorizontal,
+                                        windowWidth,
+                                      ),
+                                    ]))))
                   ]),
             ),
           ),
           Container(
             color: Color.fromRGBO(217, 217, 217, 1),
-            height: windowHeight / 15,
+            height: isViewHorizontal ? windowHeight / 15 : 0,
           )
         ],
       )),

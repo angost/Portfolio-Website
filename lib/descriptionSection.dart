@@ -6,17 +6,13 @@ import 'package:url_launcher/url_launcher.dart';
 class DescriptionSection extends StatefulWidget {
   Map<String, dynamic> projectDetails;
   double windowWidth;
-  double paragraphDistance;
-  double titleContentDistanceMain;
-  double sectionDistanceMain;
-  double scrollBarPadding;
+  bool isViewHorizontal;
+  double paragraphDistance = 7;
+  double titleContentDistanceMain = 5;
+  double sectionDistanceMain = 20;
+  double scrollBarPadding = 0;
   DescriptionSection(
-      this.projectDetails,
-      this.windowWidth,
-      this.paragraphDistance,
-      this.titleContentDistanceMain,
-      this.sectionDistanceMain,
-      this.scrollBarPadding,
+      this.projectDetails, this.isViewHorizontal, this.windowWidth,
       {super.key});
 
   @override
@@ -26,6 +22,8 @@ class DescriptionSection extends StatefulWidget {
 class _DescriptionSectionState extends State<DescriptionSection> {
   @override
   Widget build(BuildContext context) {
+    widget.scrollBarPadding = widget.windowWidth / 50;
+
     List<String> descriptionParagraphs =
         widget.projectDetails['description_long'].split('\n');
     List<Widget> descriptionParts = <Widget>[];
@@ -37,37 +35,38 @@ class _DescriptionSectionState extends State<DescriptionSection> {
     }
     descriptionParts.removeLast();
 
-    return Expanded(
-        flex: 3,
-        child: Container(
-            padding: EdgeInsets.only(
-                top: 30,
-                bottom: 30,
-                left: widget.windowWidth / 22,
-                right: widget.windowWidth / 22 - widget.scrollBarPadding),
-            child: Scrollbar(
-              thumbVisibility: true,
-              interactive: false,
-              child: SingleChildScrollView(
-                physics: ScrollPhysics(),
-                padding: EdgeInsets.only(right: widget.scrollBarPadding),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                          Text("Description:", style: textBodyMediumBold),
-                          SizedBox(
-                            height: widget.titleContentDistanceMain,
-                          )
-                        ] +
-                        descriptionParts +
-                        <Widget>[
-                          SizedBox(height: widget.sectionDistanceMain),
-                          Text("Takeaways:", style: textBodyMediumBold),
-                          Text(
-                              " - ${widget.projectDetails['takeaways'].join('\n - ')}",
-                              style: textBodySmall)
-                        ]),
-              ),
-            )));
+    Column mainContent = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+              Text("Description:", style: textBodyMediumBold),
+              SizedBox(
+                height: widget.titleContentDistanceMain,
+              )
+            ] +
+            descriptionParts +
+            <Widget>[
+              SizedBox(height: widget.sectionDistanceMain),
+              Text("Takeaways:", style: textBodyMediumBold),
+              Text(" - ${widget.projectDetails['takeaways'].join('\n - ')}",
+                  style: textBodySmall)
+            ]);
+
+    return Container(
+        padding: EdgeInsets.only(
+            top: 30,
+            bottom: 30,
+            left: widget.windowWidth / 22,
+            right: widget.windowWidth / 22 - widget.scrollBarPadding),
+        child: widget.isViewHorizontal
+            ? Scrollbar(
+                thumbVisibility: true,
+                interactive: false,
+                child: SingleChildScrollView(
+                  physics: ScrollPhysics(),
+                  padding: EdgeInsets.only(right: widget.scrollBarPadding),
+                  child: mainContent,
+                ),
+              )
+            : mainContent);
   }
 }
