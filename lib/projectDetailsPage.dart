@@ -42,8 +42,8 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
     }
     descriptionParts.removeLast();
 
-    Uri githubLink =
-        Uri(scheme: "", host: "", path: widget.projectDetails['github_link']);
+    String githubLinkText = widget.projectDetails['github_link'];
+    Uri githubLink = Uri(scheme: "", host: "", path: githubLinkText);
 
     return Scaffold(
       appBar: MyAppBar(context, "Projects", true,
@@ -161,18 +161,15 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                               SizedBox(
                                                   height: widget
                                                       .titleContentDistanceMetadata),
-                                              InkWell(
-                                                  child: Text(
-                                                      widget.projectDetails[
-                                                          'github_link'],
-                                                      style: textBodySmall),
-                                                  onTap: () {
-                                                    if (widget.projectDetails[
-                                                            'github_link'] !=
-                                                        "") {
-                                                      launchUrl(githubLink);
-                                                    }
-                                                  }),
+                                              githubLinkText != ""
+                                                  ? InkWell(
+                                                      child: Text(
+                                                          githubLinkText,
+                                                          style: textBodySmall),
+                                                      onTap: () {
+                                                        launchUrl(githubLink);
+                                                      })
+                                                  : Text("-"),
                                             ],
                                           )),
                                       SizedBox(height: 20.0),
