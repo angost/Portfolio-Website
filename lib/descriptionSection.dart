@@ -5,8 +5,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class DescriptionSection extends StatefulWidget {
   Map<String, dynamic> projectDetails;
-  double windowWidth;
   bool isViewHorizontal;
+  double windowWidth;
   double paragraphDistance = 7;
   double titleContentDistanceMain = 5;
   double sectionDistanceMain = 20;
@@ -53,9 +53,11 @@ class _DescriptionSectionState extends State<DescriptionSection> {
 
     return Container(
         padding: EdgeInsets.only(
-            top: 30,
+            top: widget.isViewHorizontal ? 30 : 20,
             bottom: 30,
-            left: widget.windowWidth / 22,
+            left: widget.isViewHorizontal
+                ? widget.windowWidth / 22
+                : widget.windowWidth / 25,
             right: widget.windowWidth / 22 - widget.scrollBarPadding),
         child: widget.isViewHorizontal
             ? Scrollbar(

@@ -6,9 +6,11 @@ import 'package:url_launcher/url_launcher.dart';
 class MetaDataSection extends StatefulWidget {
   Map<String, dynamic> projectDetails;
   bool isViewHorizontal;
+  double windowWidth;
   double titleContentDistanceMetadata = 3;
   double sectionDistanceMetadata = 15;
-  MetaDataSection(this.projectDetails, this.isViewHorizontal, {super.key});
+  MetaDataSection(this.projectDetails, this.isViewHorizontal, this.windowWidth,
+      {super.key});
 
   @override
   State<MetaDataSection> createState() => _MetaDataSectionState();
@@ -130,14 +132,25 @@ class _MetaDataSectionState extends State<MetaDataSection> {
                   bottom: BorderSide(
                       width: 3, color: Theme.of(context).primaryColor)),
             ),
+            padding: EdgeInsets.only(left: widget.windowWidth / 25),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Expanded(
                   flex: 2,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: mainContent,
+                    children: <Widget>[
+                          const SizedBox(
+                            height: 5,
+                          )
+                        ] +
+                        mainContent +
+                        <Widget>[
+                          const SizedBox(
+                            height: 5,
+                          )
+                        ],
                   ),
                 ),
                 SizedBox(

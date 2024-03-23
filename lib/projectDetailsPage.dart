@@ -52,7 +52,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                   color: Theme.of(context).primaryColor)),
                         ),
                         alignment: AlignmentDirectional.centerStart,
-                        padding: EdgeInsets.only(left: 60.0),
+                        padding: EdgeInsets.only(left: windowWidth / 25),
                         child: Text(widget.projectDetails['name'],
                             style: textBodyLargeBold),
                       ),
@@ -68,7 +68,8 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                       flex: 1,
                                       child: MetaDataSection(
                                           widget.projectDetails,
-                                          isViewHorizontal)),
+                                          isViewHorizontal,
+                                          windowWidth)),
                                   Expanded(
                                     flex: 3,
                                     child: DescriptionSection(
@@ -86,7 +87,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                     physics: ScrollPhysics(),
                                     child: Column(children: <Widget>[
                                       MetaDataSection(widget.projectDetails,
-                                          isViewHorizontal),
+                                          isViewHorizontal, windowWidth),
                                       DescriptionSection(
                                         widget.projectDetails,
                                         isViewHorizontal,
