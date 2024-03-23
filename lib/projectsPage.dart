@@ -86,7 +86,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: isViewHorizontal ? 20 : 30,
           ),
           Container(
             color: Color.fromRGBO(217, 217, 217, 1),

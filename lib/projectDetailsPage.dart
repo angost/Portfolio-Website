@@ -31,7 +31,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
               margin: EdgeInsets.only(
                   left: windowWidth / 25,
                   right: windowWidth / 25,
-                  top: windowHeight / 20,
+                  top: 20,
                   bottom: windowHeight / 20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
