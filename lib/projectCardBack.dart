@@ -37,6 +37,8 @@ class ProjectCardBack extends Card {
                     );
                   },
                   style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.only(
+                          top: 15, bottom: 15, left: 20, right: 20),
                       backgroundColor: const Color.fromRGBO(227, 203, 214, 1),
                       foregroundColor: const Color.fromRGBO(201, 116, 149, 0.5),
                       textStyle: textButtons,
