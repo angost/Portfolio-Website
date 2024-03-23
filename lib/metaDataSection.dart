@@ -92,7 +92,10 @@ class _MetaDataSectionState extends State<MetaDataSection> {
               : widget.titleContentDistanceMetadata),
       githubLinkText != ""
           ? InkWell(
-              child: Text(githubLinkText, style: textBodySmall),
+              child: Text(githubLinkText,
+                  style: textBodySmall.copyWith(
+                      decoration: TextDecoration.underline,
+                      decorationColor: Color.fromRGBO(48, 46, 46, 1))),
               onTap: () {
                 launchUrl(githubLink);
               })

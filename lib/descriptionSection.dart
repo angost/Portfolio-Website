@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/theme/theme_constants.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class DescriptionSection extends StatefulWidget {
   Map<String, dynamic> projectDetails;
