@@ -41,6 +41,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
   Widget build(BuildContext context) {
     double windowWidth = MediaQuery.of(context).size.width;
     double windowHeight = MediaQuery.of(context).size.height;
+    bool isViewHorizontal = windowWidth > windowHeight;
 
     return Scaffold(
       appBar: MyAppBar(context, "Projects", false, windowWidth > windowHeight),
@@ -68,8 +69,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                   },
                   child: FlipCard(
                     controller: controller,
-                    fill: Fill
-                        .fillBack,
+                    fill: Fill.fillBack,
                     direction: FlipDirection.HORIZONTAL,
                     side: CardSide.FRONT,
                     front: ProjectCardFront(
@@ -90,7 +90,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
           ),
           Container(
             color: Color.fromRGBO(217, 217, 217, 1),
-            height: 50,
+            height: isViewHorizontal ? windowHeight / 15 : 0,
           )
         ],
       )),

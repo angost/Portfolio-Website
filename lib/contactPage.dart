@@ -18,6 +18,7 @@ class _ContactPageState extends State<ContactPage> {
   Widget build(BuildContext context) {
     double windowWidth = MediaQuery.of(context).size.width;
     double windowHeight = MediaQuery.of(context).size.height;
+    bool isViewHorizontal = windowWidth > windowHeight;
 
     Uri githubLink = Uri(scheme: "", host: "", path: "github.com/angost");
     Uri linkedinLink =
@@ -50,6 +51,10 @@ class _ContactPageState extends State<ContactPage> {
         SizedBox(height: 40),
         ContactButton("Github", Icon(Icons.code), githubLink),
         Spacer(),
+        Container(
+          color: Color.fromRGBO(217, 217, 217, 1),
+          height: isViewHorizontal ? windowHeight / 15 : 0,
+        )
       ])),
     );
   }

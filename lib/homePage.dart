@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
             Spacer(),
             Container(
               color: Color.fromRGBO(217, 217, 217, 1),
-              height: 50,
+              height: windowHeight / 15,
             )
           ],
         )),
@@ -103,8 +103,8 @@ class _HomePageState extends State<HomePage> {
         body: Center(
             child: Padding(
           padding: EdgeInsets.only(
-              top: windowHeight * 20 / 250,
-              bottom: windowHeight * 10 / 250,
+              top: windowHeight * 15 / 250,
+              bottom: windowHeight * 15 / 250,
               left: 20,
               right: 20),
           child: Column(
