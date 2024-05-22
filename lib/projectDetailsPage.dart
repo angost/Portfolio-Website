@@ -2,12 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/myAppBar.dart';
+import 'package:portfolio_app/metaDataSection.dart';
+import 'package:portfolio_app/descriptionSection.dart';
 import 'package:portfolio_app/theme/theme_constants.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
 class ProjectDetailsPage extends StatefulWidget {
   Map<String, dynamic> projectDetails;
-
   ProjectDetailsPage(this.projectDetails, {super.key});
 
   @override
@@ -17,18 +17,22 @@ class ProjectDetailsPage extends StatefulWidget {
 class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   @override
   Widget build(BuildContext context) {
-    List<String> imgPaths =
-        List<String>.from(widget.projectDetails['img_paths'] as List);
+    double windowWidth = MediaQuery.of(context).size.width;
+    double windowHeight = MediaQuery.of(context).size.height;
+    bool isViewHorizontal = windowWidth > windowHeight;
 
     return Scaffold(
-      appBar: MyAppBar(context, "Projects", true), // add back navigation arrow
+      appBar: MyAppBar(context, "Projects", true, windowWidth > windowHeight),
       body: Center(
           child: Column(
         children: <Widget>[
           Expanded(
             child: Container(
-              margin: const EdgeInsets.only(
-                  left: 60.0, right: 60.0, top: 40.0, bottom: 40.0),
+              margin: EdgeInsets.only(
+                  left: windowWidth / 25,
+                  right: windowWidth / 25,
+                  top: 20,
+                  bottom: windowHeight / 20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   color: Color.fromRGBO(250, 250, 250, 1),
@@ -37,6 +41,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
+                    // PROJECT NAME SECTION
                     Expanded(
                       flex: 1,
                       child: Container(
@@ -47,117 +52,54 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                   color: Theme.of(context).primaryColor)),
                         ),
                         alignment: AlignmentDirectional.centerStart,
-                        padding: EdgeInsets.only(left: 60.0),
+                        padding: EdgeInsets.only(left: windowWidth / 25),
                         child: Text(widget.projectDetails['name'],
                             style: textBodyLargeBold),
                       ),
                     ),
+                    // PROJECT DETAILS SECTION
                     Expanded(
-                      flex: 9,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                        right: BorderSide(
-                                            width: 3,
-                                            color: Theme.of(context)
-                                                .primaryColor)),
-                                  ),
-                                  child: Column(
-                                    children: <Widget>[
-                                      SizedBox(height: 20.0),
-                                      Padding(
-                                          padding: EdgeInsets.only(left: 20.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Text("Technologies:",
-                                                  style: textBodyMediumBold),
-                                              Text(
-                                                  widget.projectDetails[
-                                                          'technologies']
-                                                      .join(", \n"),
-                                                  style: textBodySmall),
-                                              Text("People no:",
-                                                  style: textBodyMediumBold),
-                                              Text(
-                                                  widget.projectDetails[
-                                                      'people_no'],
-                                                  style: textBodySmall),
-                                              Text("Goal:",
-                                                  style: textBodyMediumBold),
-                                              Text(
-                                                  widget.projectDetails['goal'],
-                                                  style: textBodySmall),
-                                              Text("Github link:",
-                                                  style: textBodyMediumBold),
-                                              Text(
-                                                  "https:/github.com/projectApp",
-                                                  style: textBodySmall),
-                                            ],
-                                          )),
-                                      SizedBox(height: 20.0),
-                                      CarouselSlider(
-                                          options: CarouselOptions(
-                                              autoPlay: true,
-                                              autoPlayInterval:
-                                                  Duration(seconds: 4)),
-                                          items: imgPaths.map((i) {
-                                            return Builder(
-                                              builder: (BuildContext context) {
-                                                return Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    margin:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 5.0),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.transparent,
-                                                    ),
-                                                    child: Image.asset(i));
-                                              },
-                                            );
-                                          }).toList()),
-                                    ],
-                                  ))),
-                          Expanded(
-                              flex: 3,
-                              child: Container(
-                                  padding: EdgeInsets.all(30.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text("Description:",
-                                          style: textBodyMediumBold),
-                                      Text(
-                                          widget.projectDetails[
-                                              'description_long'],
-                                          style: textBodySmall),
-                                      SizedBox(height: 20.0),
-                                      Text("Takeaways:",
-                                          style: textBodyMediumBold),
-                                      Text(
-                                          " - ${widget.projectDetails['takeaways'].join('\n - ')}",
-                                          style: textBodySmall)
-                                    ],
-                                  ))),
-                        ],
-                      ),
-                    )
+                        flex: 9,
+                        child: isViewHorizontal
+                            // MetaDataSection and DescriptionSection are in a Row in horizontal orientation
+                            ? Row(
+                                children: <Widget>[
+                                  Expanded(
+                                      flex: 1,
+                                      child: MetaDataSection(
+                                          widget.projectDetails,
+                                          isViewHorizontal,
+                                          windowWidth)),
+                                  Expanded(
+                                    flex: 3,
+                                    child: DescriptionSection(
+                                        widget.projectDetails,
+                                        isViewHorizontal,
+                                        windowWidth),
+                                  )
+                                ],
+                              )
+                            // MetaDataSection and DescriptionSection are in a Column in vertical orientation
+                            : Scrollbar(
+                                thumbVisibility: true,
+                                interactive: false,
+                                child: SingleChildScrollView(
+                                    physics: ScrollPhysics(),
+                                    child: Column(children: <Widget>[
+                                      MetaDataSection(widget.projectDetails,
+                                          isViewHorizontal, windowWidth),
+                                      DescriptionSection(
+                                        widget.projectDetails,
+                                        isViewHorizontal,
+                                        windowWidth,
+                                      ),
+                                    ]))))
                   ]),
             ),
           ),
           Container(
             color: Color.fromRGBO(217, 217, 217, 1),
-            height: 50,
+            height: isViewHorizontal ? windowHeight / 15 : 0,
           )
         ],
       )),

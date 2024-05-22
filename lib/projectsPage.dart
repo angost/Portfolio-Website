@@ -39,18 +39,23 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
   @override
   Widget build(BuildContext context) {
+    double windowWidth = MediaQuery.of(context).size.width;
+    double windowHeight = MediaQuery.of(context).size.height;
+    bool isViewHorizontal = windowWidth > windowHeight;
+
     return Scaffold(
-      appBar: MyAppBar(context, "Projects", false),
+      appBar: MyAppBar(context, "Projects", false, windowWidth > windowHeight),
       body: Center(
           child: Column(
         children: <Widget>[
           Flexible(
             child: GridView.extent(
-              maxCrossAxisExtent: 300,
+              maxCrossAxisExtent: 400,
               childAspectRatio: (5 / 4),
-              padding: EdgeInsets.only(top: 20, left: 100, right: 100),
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 40,
+              padding: EdgeInsets.only(
+                  top: 20, left: windowWidth / 15, right: windowWidth / 15),
+              mainAxisSpacing: windowHeight / 36,
+              crossAxisSpacing: windowWidth / 38,
               children: List.generate(projectsData.length, (index) {
                 FlipCardController controller = FlipCardController();
 
@@ -64,10 +69,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
                   },
                   child: FlipCard(
                     controller: controller,
-                    fill: Fill
-                        .fillBack, // Fill the back side of the card to make in the same size as the front.
-                    direction: FlipDirection.HORIZONTAL, // default
-                    side: CardSide.FRONT, // The side to initially display.
+                    fill: Fill.fillBack,
+                    direction: FlipDirection.HORIZONTAL,
+                    side: CardSide.FRONT,
                     front: ProjectCardFront(
                         context,
                         projectsData[index]['name'],
@@ -82,11 +86,11 @@ class _ProjectsPageState extends State<ProjectsPage> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: isViewHorizontal ? 20 : 30,
           ),
           Container(
             color: Color.fromRGBO(217, 217, 217, 1),
-            height: 50,
+            height: isViewHorizontal ? windowHeight / 15 : 0,
           )
         ],
       )),
