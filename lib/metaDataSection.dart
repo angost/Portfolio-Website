@@ -25,27 +25,63 @@ class _MetaDataSectionState extends State<MetaDataSection> {
     List<String> imgPaths =
         List<String>.from(widget.projectDetails['img_paths'] as List);
 
+    double carouselAspectRatio = 16 / 16;
+
     CarouselSlider imagesSlider = CarouselSlider(
         options: CarouselOptions(
           autoPlay: true,
           autoPlayInterval: const Duration(seconds: 4),
           viewportFraction: 1.0,
           enlargeCenterPage: false,
+          aspectRatio: carouselAspectRatio,
         ),
         items: imgPaths.map((i) {
           return Builder(
             builder: (BuildContext context) {
-              return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 0),
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                  child: Image.asset(
-                    i,
-                  ));
+              return GestureDetector(
+                onTap: () {},
+                child: Expanded(
+                  child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 0),
+                      decoration: const BoxDecoration(
+                        color: Colors.transparent,
+                      ),
+                      child: Expanded(
+                        child: Image.asset(
+                          i,
+                        ),
+                      )),
+                ),
+              );
             },
           );
         }).toList());
+
+    Widget imagesSliderNavigator = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Expanded(
+          flex: 2,
+          child: IconButton(
+              padding: EdgeInsets.zero,
+              iconSize: 10,
+              onPressed: () => {},
+              icon: Icon(Icons.arrow_back_ios_new_rounded)),
+        ),
+        Expanded(
+            flex: 10,
+            child: Container(
+                child: imagesSlider)),
+        Expanded(
+          flex: 2,
+          child: IconButton(
+              padding: EdgeInsets.zero,
+              iconSize: 10,
+              onPressed: () => {},
+              icon: Icon(Icons.arrow_forward_ios_rounded)),
+        ),
+      ],
+    );
 
     List<Widget> mainContent = <Widget>[
       Text("Technologies:", style: textBodyMediumBold),
@@ -124,7 +160,7 @@ class _MetaDataSectionState extends State<MetaDataSection> {
                   width: widget.isViewHorizontal ? 0 : 20.0,
                 ),
                 Expanded(
-                  child: imagesSlider,
+                  child: imagesSliderNavigator,
                 ),
               ],
             ))
@@ -162,7 +198,7 @@ class _MetaDataSectionState extends State<MetaDataSection> {
                 ),
                 Expanded(
                   flex: 2,
-                  child: imagesSlider,
+                  child: imagesSliderNavigator,
                 ),
               ],
             ));
