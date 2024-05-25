@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_app/theme/theme_constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/foundation.dart';
 
 class MetaDataSection extends StatefulWidget {
   Map<String, dynamic> projectDetails;
@@ -22,10 +23,15 @@ class _MetaDataSectionState extends State<MetaDataSection> {
     String githubLinkText = widget.projectDetails['github_link'];
     Uri githubLink = Uri(scheme: "", host: "", path: githubLinkText);
 
+    bool isWebMobile = kIsWeb &&
+        (defaultTargetPlatform == TargetPlatform.iOS ||
+            defaultTargetPlatform == TargetPlatform.android);
+
     List<String> imgPaths =
         List<String>.from(widget.projectDetails['img_paths'] as List);
 
-    double carouselAspectRatio = 16 / 16;
+    double carouselAspectRatioMobile = 16 / 9;
+    double carouselAspectRatioDesktop = 16 / 16;
 
     CarouselSlider imagesSlider = CarouselSlider(
         options: CarouselOptions(
@@ -33,7 +39,9 @@ class _MetaDataSectionState extends State<MetaDataSection> {
           autoPlayInterval: const Duration(seconds: 4),
           viewportFraction: 1.0,
           enlargeCenterPage: false,
-          aspectRatio: carouselAspectRatio,
+          aspectRatio: isWebMobile
+              ? carouselAspectRatioMobile
+              : carouselAspectRatioDesktop,
         ),
         items: imgPaths.map((i) {
           return Builder(
@@ -57,31 +65,30 @@ class _MetaDataSectionState extends State<MetaDataSection> {
           );
         }).toList());
 
-    Widget imagesSliderNavigator = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Expanded(
-          flex: 2,
-          child: IconButton(
-              padding: EdgeInsets.zero,
-              iconSize: 10,
-              onPressed: () => {},
-              icon: Icon(Icons.arrow_back_ios_new_rounded)),
-        ),
-        Expanded(
-            flex: 10,
-            child: Container(
-                child: imagesSlider)),
-        Expanded(
-          flex: 2,
-          child: IconButton(
-              padding: EdgeInsets.zero,
-              iconSize: 10,
-              onPressed: () => {},
-              icon: Icon(Icons.arrow_forward_ios_rounded)),
-        ),
-      ],
-    );
+    Widget imagesSliderNavigator = isWebMobile
+        ? Center(child: imagesSlider)
+        : Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Expanded(
+                flex: 2,
+                child: IconButton(
+                    padding: EdgeInsets.zero,
+                    iconSize: 10,
+                    onPressed: () => {},
+                    icon: Icon(Icons.arrow_back_ios_new_rounded)),
+              ),
+              Expanded(flex: 10, child: Container(child: imagesSlider)),
+              Expanded(
+                flex: 2,
+                child: IconButton(
+                    padding: EdgeInsets.zero,
+                    iconSize: 10,
+                    onPressed: () => {},
+                    icon: Icon(Icons.arrow_forward_ios_rounded)),
+              ),
+            ],
+          );
 
     List<Widget> mainContent = <Widget>[
       Text("Technologies:", style: textBodyMediumBold),
