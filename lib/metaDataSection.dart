@@ -59,8 +59,14 @@ class _MetaDataSectionState extends State<MetaDataSection> {
           );
         }).toList());
 
+    Widget imagesSliderEnlarger = GestureDetector(
+        onTap: () {
+          print("Container tapped!");
+        },
+        child: imagesSlider);
+
     Widget imagesSliderNavigator = isWebMobile
-        ? Center(child: imagesSlider)
+        ? Center(child: imagesSliderEnlarger)
         : Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -72,7 +78,7 @@ class _MetaDataSectionState extends State<MetaDataSection> {
                     onPressed: () => {print("LEFT")},
                     icon: const Icon(Icons.arrow_back_ios_new_rounded)),
               ),
-              Expanded(flex: 10, child: imagesSlider),
+              Expanded(flex: 10, child: imagesSliderEnlarger),
               Expanded(
                 flex: 2,
                 child: IconButton(
