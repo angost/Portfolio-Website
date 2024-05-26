@@ -46,19 +46,13 @@ class _MetaDataSectionState extends State<MetaDataSection> {
         items: imgPaths.map((i) {
           return Builder(
             builder: (BuildContext context) {
-              return GestureDetector(
-                onTap: () {},
-                child: Expanded(
-                  child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 0),
-                      decoration: const BoxDecoration(
-                        color: Colors.transparent,
-                      ),
-                      child: Expanded(
-                        child: Image.asset(
-                          i,
-                        ),
-                      )),
+              return Container(
+                margin: const EdgeInsets.symmetric(horizontal: 0),
+                decoration: const BoxDecoration(
+                  color: Colors.transparent,
+                ),
+                child: Image.asset(
+                  i,
                 ),
               );
             },
@@ -75,17 +69,17 @@ class _MetaDataSectionState extends State<MetaDataSection> {
                 child: IconButton(
                     padding: EdgeInsets.zero,
                     iconSize: 10,
-                    onPressed: () => {},
-                    icon: Icon(Icons.arrow_back_ios_new_rounded)),
+                    onPressed: () => {print("LEFT")},
+                    icon: const Icon(Icons.arrow_back_ios_new_rounded)),
               ),
-              Expanded(flex: 10, child: Container(child: imagesSlider)),
+              Expanded(flex: 10, child: imagesSlider),
               Expanded(
                 flex: 2,
                 child: IconButton(
                     padding: EdgeInsets.zero,
                     iconSize: 10,
-                    onPressed: () => {},
-                    icon: Icon(Icons.arrow_forward_ios_rounded)),
+                    onPressed: () => {print("RIGHT")},
+                    icon: const Icon(Icons.arrow_forward_ios_rounded)),
               ),
             ],
           );
