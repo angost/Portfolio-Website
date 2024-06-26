@@ -80,8 +80,9 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
                     decoration: const BoxDecoration(
                       color: Colors.transparent,
                     ),
-                    child: Image.asset(i,
-                        fit: BoxFit.fitWidth), // todo - Scale the image better
+                    child: SizedBox(
+                        width: MediaQuery.sizeOf(context).width,
+                        child: Image.asset(i, fit: BoxFit.contain)),
                   ),
                 ),
               );
