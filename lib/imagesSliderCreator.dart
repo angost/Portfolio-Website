@@ -19,6 +19,33 @@ class ImagesSliderCreator extends StatefulWidget {
 }
 
 class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
+  OverlayEntry? screenBarrier;
+  OverlayEntry? sliderEnlarged;
+
+  void enlargeSliderAsOverlay() {
+    screenBarrier = OverlayEntry(
+      builder: (context) => ModalBarrier(
+        dismissible: true,
+        color: const Color.fromRGBO(0, 0, 0, 0.7),
+        onDismiss: endEnlargingAndOverlay,
+      ),
+    );
+
+    sliderEnlarged = OverlayEntry(
+        builder: (context) => ImagesSliderCreator(widget.imgPaths, false));
+
+    final overlay = Overlay.of(context);
+    overlay.insert(screenBarrier!);
+    overlay.insert(sliderEnlarged!);
+  }
+
+  void endEnlargingAndOverlay() {
+    sliderEnlarged?.remove();
+    screenBarrier?.remove();
+    screenBarrier = null;
+    sliderEnlarged = null;
+  }
+
   @override
   Widget build(BuildContext context) {
     CarouselSlider imagesSlider = CarouselSlider(
@@ -49,11 +76,7 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
 
     Widget imagesSliderEnlarger = GestureDetector(
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      EnlargedImagesSliderView(widget.imgPaths)));
+          enlargeSliderAsOverlay();
         },
         child: imagesSlider);
 
@@ -87,21 +110,5 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
           );
 
     return imagesSliderNavigator;
-  }
-}
-
-class EnlargedImagesSliderView extends StatefulWidget {
-  List<String> imgPaths;
-  EnlargedImagesSliderView(this.imgPaths, {super.key});
-
-  @override
-  State<EnlargedImagesSliderView> createState() =>
-      _EnlargedImagesSliderViewState();
-}
-
-class _EnlargedImagesSliderViewState extends State<EnlargedImagesSliderView> {
-  @override
-  Widget build(BuildContext context) {
-    return ImagesSliderCreator(widget.imgPaths, false);
   }
 }

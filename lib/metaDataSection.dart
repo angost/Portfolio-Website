@@ -24,7 +24,6 @@ class _MetaDataSectionState extends State<MetaDataSection> {
     String githubLinkText = widget.projectDetails['github_link'];
     Uri githubLink = Uri(scheme: "", host: "", path: githubLinkText);
 
-    // Research Overlay as a way to zoom in on imagesSlider
     ImagesSliderCreator imagesSliderNavigator = ImagesSliderCreator(
         List<String>.from(widget.projectDetails['img_paths'] as List), true);
 
