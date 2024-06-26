@@ -25,7 +25,7 @@ class _MetaDataSectionState extends State<MetaDataSection> {
     Uri githubLink = Uri(scheme: "", host: "", path: githubLinkText);
 
     ImagesSliderCreator imagesSliderNavigator = ImagesSliderCreator(
-        List<String>.from(widget.projectDetails['img_paths'] as List), true);
+        List<String>.from(widget.projectDetails['img_paths'] as List), true, false);
 
     List<Widget> mainContent = <Widget>[
       Text("Technologies:", style: textBodyMediumBold),

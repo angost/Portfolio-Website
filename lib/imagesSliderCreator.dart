@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_app/theme/theme_constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
+import 'package:dotted_border/dotted_border.dart';
 
 class ImagesSliderCreator extends StatefulWidget {
   bool isWebMobile = kIsWeb &&
@@ -11,8 +12,10 @@ class ImagesSliderCreator extends StatefulWidget {
   double carouselAspectRatioDesktop = 16 / 16;
   List<String> imgPaths;
   bool hasEnlarger;
+  bool isEnlarged;
 
-  ImagesSliderCreator(this.imgPaths, this.hasEnlarger, {super.key});
+  ImagesSliderCreator(this.imgPaths, this.hasEnlarger, this.isEnlarged,
+      {super.key});
 
   @override
   State<ImagesSliderCreator> createState() => _ImagesSliderCreatorState();
@@ -32,7 +35,8 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
     );
 
     sliderEnlarged = OverlayEntry(
-        builder: (context) => ImagesSliderCreator(widget.imgPaths, false));
+        builder: (context) =>
+            ImagesSliderCreator(widget.imgPaths, false, true));
 
     final overlay = Overlay.of(context);
     overlay.insert(screenBarrier!);
@@ -61,13 +65,23 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
         items: widget.imgPaths.map((i) {
           return Builder(
             builder: (BuildContext context) {
-              return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 0),
-                decoration: const BoxDecoration(
-                  color: Colors.transparent,
-                ),
-                child: Image.asset(
-                  i,
+              return DottedBorder(
+                color: widget.isEnlarged
+                    ? Theme.of(context).primaryColor
+                    : Colors.transparent,
+                strokeWidth: widget.isEnlarged ? 4 : 0,
+                dashPattern: const [10],
+                strokeCap: StrokeCap.round,
+                child: Center(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 0),
+                    decoration: const BoxDecoration(
+                      color: Colors.transparent,
+                    ),
+                    child: Image.asset(
+                      i,
+                    ), // todo - Scale the image better
+                  ),
                 ),
               );
             },
