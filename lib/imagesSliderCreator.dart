@@ -89,10 +89,14 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
               Expanded(
                 flex: 2,
                 child: IconButton(
-                    padding: EdgeInsets.zero,
-                    iconSize: 10,
-                    onPressed: () => {print("LEFT")},
-                    icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+                  padding: EdgeInsets.zero,
+                  iconSize: 10,
+                  onPressed: () => {print("LEFT")},
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                  style: IconButton.styleFrom(
+                      backgroundColor:
+                          const Color.fromRGBO(250, 250, 250, 0.8)),
+                ),
               ),
               Expanded(
                   flex: 10,
@@ -101,10 +105,14 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
               Expanded(
                 flex: 2,
                 child: IconButton(
-                    padding: EdgeInsets.zero,
-                    iconSize: 10,
-                    onPressed: () => {print("RIGHT")},
-                    icon: const Icon(Icons.arrow_forward_ios_rounded)),
+                  padding: EdgeInsets.zero,
+                  iconSize: 10,
+                  onPressed: () => {print("RIGHT")},
+                  icon: const Icon(Icons.arrow_forward_ios_rounded),
+                  style: IconButton.styleFrom(
+                      backgroundColor:
+                          const Color.fromRGBO(250, 250, 250, 0.8)),
+                ),
               ),
             ],
           );
