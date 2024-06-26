@@ -38,7 +38,11 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
 
     sliderEnlarged = OverlayEntry(
         builder: (context) => ImagesSliderCreator(
-            widget.imgPaths, false, true, widget.isViewHorizontal));
+            widget.imgPaths,
+            false,
+            true,
+            MediaQuery.sizeOf(context).width >
+                MediaQuery.sizeOf(context).height));
 
     final overlay = Overlay.of(context);
     overlay.insert(screenBarrier!);
