@@ -1,23 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_app/imagesSliderCreator.dart';
 import 'package:portfolio_app/theme/theme_constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/foundation.dart';
-
-class EnlargedImagesSliderView extends StatefulWidget {
-  const EnlargedImagesSliderView({super.key});
-
-  @override
-  State<EnlargedImagesSliderView> createState() =>
-      _EnlargedImagesSliderViewState();
-}
-
-class _EnlargedImagesSliderViewState extends State<EnlargedImagesSliderView> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Container());
-  }
-}
 
 class MetaDataSection extends StatefulWidget {
   Map<String, dynamic> projectDetails;
@@ -38,75 +24,9 @@ class _MetaDataSectionState extends State<MetaDataSection> {
     String githubLinkText = widget.projectDetails['github_link'];
     Uri githubLink = Uri(scheme: "", host: "", path: githubLinkText);
 
-    bool isWebMobile = kIsWeb &&
-        (defaultTargetPlatform == TargetPlatform.iOS ||
-            defaultTargetPlatform == TargetPlatform.android);
-
-    List<String> imgPaths =
-        List<String>.from(widget.projectDetails['img_paths'] as List);
-
-    double carouselAspectRatioMobile = 16 / 9;
-    double carouselAspectRatioDesktop = 16 / 16;
-
-    CarouselSlider imagesSlider = CarouselSlider(
-        options: CarouselOptions(
-          autoPlay: true,
-          autoPlayInterval: const Duration(seconds: 4),
-          viewportFraction: 1.0,
-          enlargeCenterPage: false,
-          aspectRatio: isWebMobile
-              ? carouselAspectRatioMobile
-              : carouselAspectRatioDesktop,
-        ),
-        items: imgPaths.map((i) {
-          return Builder(
-            builder: (BuildContext context) {
-              return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 0),
-                decoration: const BoxDecoration(
-                  color: Colors.transparent,
-                ),
-                child: Image.asset(
-                  i,
-                ),
-              );
-            },
-          );
-        }).toList());
-    // Move imagesSlider, enlarger, navigator to a seperate file; Research Overlay as a way to zoom in on imagesSlider
-    Widget imagesSliderEnlarger = GestureDetector(
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => EnlargedImagesSliderView()));
-        },
-        child: imagesSlider);
-
-    Widget imagesSliderNavigator = isWebMobile
-        ? Center(child: imagesSliderEnlarger)
-        : Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Expanded(
-                flex: 2,
-                child: IconButton(
-                    padding: EdgeInsets.zero,
-                    iconSize: 10,
-                    onPressed: () => {print("LEFT")},
-                    icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-              ),
-              Expanded(flex: 10, child: imagesSliderEnlarger),
-              Expanded(
-                flex: 2,
-                child: IconButton(
-                    padding: EdgeInsets.zero,
-                    iconSize: 10,
-                    onPressed: () => {print("RIGHT")},
-                    icon: const Icon(Icons.arrow_forward_ios_rounded)),
-              ),
-            ],
-          );
+    // Research Overlay as a way to zoom in on imagesSlider
+    ImagesSliderCreator imagesSliderNavigator = ImagesSliderCreator(
+        List<String>.from(widget.projectDetails['img_paths'] as List), true);
 
     List<Widget> mainContent = <Widget>[
       Text("Technologies:", style: textBodyMediumBold),
