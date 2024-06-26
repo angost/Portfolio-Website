@@ -26,6 +26,7 @@ class ImagesSliderCreator extends StatefulWidget {
 class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
   OverlayEntry? screenBarrier;
   OverlayEntry? sliderEnlarged;
+  OverlayEntry? backButton;
 
   void enlargeSliderAsOverlay() {
     screenBarrier = OverlayEntry(
@@ -44,16 +45,32 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
             MediaQuery.sizeOf(context).width >
                 MediaQuery.sizeOf(context).height));
 
+    backButton = OverlayEntry(
+      builder: (context) => Positioned(
+        top: 14,
+        left: 9,
+        child: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black),
+            hoverColor: Color.fromRGBO(227, 213, 219, 0.5),
+            highlightColor: Color.fromRGBO(201, 116, 149, 0.5),
+            splashColor: Colors.transparent,
+            onPressed: endEnlargingAndOverlay),
+      ),
+    );
+
     final overlay = Overlay.of(context);
     overlay.insert(screenBarrier!);
     overlay.insert(sliderEnlarged!);
+    overlay.insert(backButton!);
   }
 
   void endEnlargingAndOverlay() {
+    backButton?.remove();
     sliderEnlarged?.remove();
     screenBarrier?.remove();
     screenBarrier = null;
     sliderEnlarged = null;
+    backButton = null;
   }
 
   @override
