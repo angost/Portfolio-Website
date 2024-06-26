@@ -4,6 +4,21 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/foundation.dart';
 
+class EnlargedImagesSliderView extends StatefulWidget {
+  const EnlargedImagesSliderView({super.key});
+
+  @override
+  State<EnlargedImagesSliderView> createState() =>
+      _EnlargedImagesSliderViewState();
+}
+
+class _EnlargedImagesSliderViewState extends State<EnlargedImagesSliderView> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Container());
+  }
+}
+
 class MetaDataSection extends StatefulWidget {
   Map<String, dynamic> projectDetails;
   bool isViewHorizontal;
@@ -58,10 +73,13 @@ class _MetaDataSectionState extends State<MetaDataSection> {
             },
           );
         }).toList());
-
+    // Move imagesSlider, enlarger, navigator to a seperate file; Research Overlay as a way to zoom in on imagesSlider
     Widget imagesSliderEnlarger = GestureDetector(
         onTap: () {
-          print("Container tapped!");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => EnlargedImagesSliderView()));
         },
         child: imagesSlider);
 
@@ -138,7 +156,7 @@ class _MetaDataSectionState extends State<MetaDataSection> {
               child: Text(githubLinkText,
                   style: textBodySmall.copyWith(
                       decoration: TextDecoration.underline,
-                      decorationColor: Color.fromRGBO(48, 46, 46, 1))),
+                      decorationColor: const Color.fromRGBO(48, 46, 46, 1))),
               onTap: () {
                 launchUrl(githubLink);
               })
