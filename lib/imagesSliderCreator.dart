@@ -13,8 +13,10 @@ class ImagesSliderCreator extends StatefulWidget {
   List<String> imgPaths;
   bool hasEnlarger;
   bool isEnlarged;
+  bool isViewHorizontal;
 
-  ImagesSliderCreator(this.imgPaths, this.hasEnlarger, this.isEnlarged,
+  ImagesSliderCreator(
+      this.imgPaths, this.hasEnlarger, this.isEnlarged, this.isViewHorizontal,
       {super.key});
 
   @override
@@ -35,8 +37,8 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
     );
 
     sliderEnlarged = OverlayEntry(
-        builder: (context) =>
-            ImagesSliderCreator(widget.imgPaths, false, true));
+        builder: (context) => ImagesSliderCreator(
+            widget.imgPaths, false, true, widget.isViewHorizontal));
 
     final overlay = Overlay.of(context);
     overlay.insert(screenBarrier!);
@@ -66,10 +68,10 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
           return Builder(
             builder: (BuildContext context) {
               return DottedBorder(
-                color: widget.isEnlarged
+                color: (widget.isEnlarged & !widget.isWebMobile)
                     ? Theme.of(context).primaryColor
                     : Colors.transparent,
-                strokeWidth: widget.isEnlarged ? 4 : 0,
+                strokeWidth: (widget.isEnlarged & !widget.isWebMobile) ? 4 : 0,
                 dashPattern: const [10],
                 strokeCap: StrokeCap.round,
                 child: Center(
@@ -78,9 +80,8 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
                     decoration: const BoxDecoration(
                       color: Colors.transparent,
                     ),
-                    child: Image.asset(
-                      i,
-                    ), // todo - Scale the image better
+                    child: Image.asset(i,
+                        fit: BoxFit.fitWidth), // todo - Scale the image better
                   ),
                 ),
               );
@@ -94,43 +95,78 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
         },
         child: imagesSlider);
 
-    Widget imagesSliderNavigator = widget.isWebMobile
-        ? Center(
-            child: widget.hasEnlarger ? imagesSliderEnlarger : imagesSlider)
-        : Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Expanded(
-                flex: 2,
-                child: IconButton(
-                  padding: EdgeInsets.zero,
-                  iconSize: 10,
-                  onPressed: () => {print("LEFT")},
-                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                  style: IconButton.styleFrom(
-                      backgroundColor:
-                          const Color.fromRGBO(250, 250, 250, 0.8)),
-                ),
-              ),
-              Expanded(
-                  flex: 10,
-                  child:
-                      widget.hasEnlarger ? imagesSliderEnlarger : imagesSlider),
-              Expanded(
-                flex: 2,
-                child: IconButton(
-                  padding: EdgeInsets.zero,
-                  iconSize: 10,
-                  onPressed: () => {print("RIGHT")},
-                  icon: const Icon(Icons.arrow_forward_ios_rounded),
-                  style: IconButton.styleFrom(
-                      backgroundColor:
-                          const Color.fromRGBO(250, 250, 250, 0.8)),
-                ),
-              ),
-            ],
-          );
+    Widget imagesSliderNavigatorMobile =
+        Center(child: widget.hasEnlarger ? imagesSliderEnlarger : imagesSlider);
 
-    return imagesSliderNavigator;
+    Widget imagesSliderNavigatorHorizontal = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Expanded(flex: 2, child: NavigationArrowLeft()),
+        Expanded(
+            flex: 10,
+            child: widget.hasEnlarger ? imagesSliderEnlarger : imagesSlider),
+        Expanded(flex: 2, child: NavigationArrowRight()),
+      ],
+    );
+
+    Widget imagesSliderNavigatorVertical = Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        widget.hasEnlarger ? imagesSliderEnlarger : imagesSlider,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[NavigationArrowLeft(), NavigationArrowRight()],
+        ),
+      ],
+    );
+
+    Widget imagesSliderNavigatorVerticalEnlarged = ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: MediaQuery.sizeOf(context).height),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Flexible(
+              child: widget.hasEnlarger ? imagesSliderEnlarger : imagesSlider),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[NavigationArrowLeft(), NavigationArrowRight()],
+          ),
+        ],
+      ),
+    );
+
+    if (widget.isWebMobile) {
+      return imagesSliderNavigatorMobile;
+    } else if (widget.isViewHorizontal) {
+      return imagesSliderNavigatorHorizontal;
+    } else if (widget.isEnlarged) {
+      return imagesSliderNavigatorVerticalEnlarged;
+    } else {
+      return imagesSliderNavigatorVertical;
+    }
   }
+}
+
+class NavigationArrowLeft extends IconButton {
+  NavigationArrowLeft({super.key})
+      : super(
+          padding: EdgeInsets.zero,
+          iconSize: 10,
+          onPressed: () => {print("LEFT")},
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          style: IconButton.styleFrom(
+              backgroundColor: const Color.fromRGBO(250, 250, 250, 0.8)),
+        );
+}
+
+class NavigationArrowRight extends IconButton {
+  NavigationArrowRight({super.key})
+      : super(
+          padding: EdgeInsets.zero,
+          iconSize: 10,
+          onPressed: () => {print("RIGHT")},
+          icon: const Icon(Icons.arrow_forward_ios_rounded),
+          style: IconButton.styleFrom(
+              backgroundColor: const Color.fromRGBO(250, 250, 250, 0.8)),
+        );
 }
