@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_app/imagesSliderCreator.dart';
 import 'package:portfolio_app/theme/theme_constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/foundation.dart';
 
 class MetaDataSection extends StatefulWidget {
   Map<String, dynamic> projectDetails;
@@ -22,30 +24,8 @@ class _MetaDataSectionState extends State<MetaDataSection> {
     String githubLinkText = widget.projectDetails['github_link'];
     Uri githubLink = Uri(scheme: "", host: "", path: githubLinkText);
 
-    List<String> imgPaths =
-        List<String>.from(widget.projectDetails['img_paths'] as List);
-
-    CarouselSlider imagesSlider = CarouselSlider(
-        options: CarouselOptions(
-          autoPlay: true,
-          autoPlayInterval: const Duration(seconds: 4),
-          viewportFraction: 1.0,
-          enlargeCenterPage: false,
-        ),
-        items: imgPaths.map((i) {
-          return Builder(
-            builder: (BuildContext context) {
-              return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 0),
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                  child: Image.asset(
-                    i,
-                  ));
-            },
-          );
-        }).toList());
+    ImagesSliderCreator imagesSliderNavigator = ImagesSliderCreator(
+        List<String>.from(widget.projectDetails['img_paths'] as List), true, false, widget.isViewHorizontal);
 
     List<Widget> mainContent = <Widget>[
       Text("Technologies:", style: textBodyMediumBold),
@@ -95,7 +75,7 @@ class _MetaDataSectionState extends State<MetaDataSection> {
               child: Text(githubLinkText,
                   style: textBodySmall.copyWith(
                       decoration: TextDecoration.underline,
-                      decorationColor: Color.fromRGBO(48, 46, 46, 1))),
+                      decorationColor: const Color.fromRGBO(48, 46, 46, 1))),
               onTap: () {
                 launchUrl(githubLink);
               })
@@ -124,7 +104,7 @@ class _MetaDataSectionState extends State<MetaDataSection> {
                   width: widget.isViewHorizontal ? 0 : 20.0,
                 ),
                 Expanded(
-                  child: imagesSlider,
+                  child: imagesSliderNavigator,
                 ),
               ],
             ))
@@ -162,7 +142,7 @@ class _MetaDataSectionState extends State<MetaDataSection> {
                 ),
                 Expanded(
                   flex: 2,
-                  child: imagesSlider,
+                  child: imagesSliderNavigator,
                 ),
               ],
             ));

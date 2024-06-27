@@ -16,9 +16,13 @@ class ProjectCardFront extends Card {
                 physics: const NeverScrollableScrollPhysics(),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(height: 10),
-                      Text(name, style: textBodyMedium),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: Text(name, style: textBodyMedium),
+                      ),
                       SizedBox(height: 10),
                       Image.asset(imgPath),
                     ]),
