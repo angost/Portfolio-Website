@@ -184,6 +184,10 @@ class NavigationArrowLeft extends IconButton {
           iconSize: 10,
           onPressed: () => {carouselController.previousPage()},
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          color: Colors.black,
+          hoverColor: const Color.fromRGBO(227, 213, 219, 0.5),
+          highlightColor: const Color.fromRGBO(201, 116, 149, 0.5),
+          splashColor: Colors.transparent,
           style: IconButton.styleFrom(
               backgroundColor: const Color.fromRGBO(250, 250, 250, 0.8)),
         );
@@ -196,6 +200,10 @@ class NavigationArrowRight extends IconButton {
           iconSize: 10,
           onPressed: () => {carouselController.nextPage()},
           icon: const Icon(Icons.arrow_forward_ios_rounded),
+          color: Colors.black,
+          hoverColor: const Color.fromRGBO(227, 213, 219, 0.5),
+          highlightColor: const Color.fromRGBO(201, 116, 149, 0.5),
+          splashColor: Colors.transparent,
           style: IconButton.styleFrom(
               backgroundColor: const Color.fromRGBO(250, 250, 250, 0.8)),
         );
