@@ -27,6 +27,7 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
   OverlayEntry? screenBarrier;
   OverlayEntry? sliderEnlarged;
   OverlayEntry? backButton;
+  CarouselController carouselController = CarouselController();
 
   void enlargeSliderAsOverlay() {
     screenBarrier = OverlayEntry(
@@ -85,6 +86,7 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
               ? widget.carouselAspectRatioMobile
               : widget.carouselAspectRatioDesktop,
         ),
+        carouselController: carouselController,
         items: widget.imgPaths.map((i) {
           return Builder(
             builder: (BuildContext context) {
@@ -123,11 +125,11 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
     Widget imagesSliderNavigatorHorizontal = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Expanded(flex: 2, child: NavigationArrowLeft()),
+        Expanded(flex: 2, child: NavigationArrowLeft(carouselController)),
         Expanded(
             flex: 10,
             child: widget.hasEnlarger ? imagesSliderEnlarger : imagesSlider),
-        Expanded(flex: 2, child: NavigationArrowRight()),
+        Expanded(flex: 2, child: NavigationArrowRight(carouselController)),
       ],
     );
 
@@ -137,7 +139,10 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
         widget.hasEnlarger ? imagesSliderEnlarger : imagesSlider,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[NavigationArrowLeft(), NavigationArrowRight()],
+          children: <Widget>[
+            NavigationArrowLeft(carouselController),
+            NavigationArrowRight(carouselController)
+          ],
         ),
       ],
     );
@@ -151,7 +156,10 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
               child: widget.hasEnlarger ? imagesSliderEnlarger : imagesSlider),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[NavigationArrowLeft(), NavigationArrowRight()],
+            children: <Widget>[
+              NavigationArrowLeft(carouselController),
+              NavigationArrowRight(carouselController)
+            ],
           ),
         ],
       ),
@@ -170,11 +178,11 @@ class _ImagesSliderCreatorState extends State<ImagesSliderCreator> {
 }
 
 class NavigationArrowLeft extends IconButton {
-  NavigationArrowLeft({super.key})
+  NavigationArrowLeft(CarouselController carouselController, {super.key})
       : super(
           padding: EdgeInsets.zero,
           iconSize: 10,
-          onPressed: () => {print("LEFT")},
+          onPressed: () => {carouselController.previousPage()},
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
           style: IconButton.styleFrom(
               backgroundColor: const Color.fromRGBO(250, 250, 250, 0.8)),
@@ -182,11 +190,11 @@ class NavigationArrowLeft extends IconButton {
 }
 
 class NavigationArrowRight extends IconButton {
-  NavigationArrowRight({super.key})
+  NavigationArrowRight(CarouselController carouselController, {super.key})
       : super(
           padding: EdgeInsets.zero,
           iconSize: 10,
-          onPressed: () => {print("RIGHT")},
+          onPressed: () => {carouselController.nextPage()},
           icon: const Icon(Icons.arrow_forward_ios_rounded),
           style: IconButton.styleFrom(
               backgroundColor: const Color.fromRGBO(250, 250, 250, 0.8)),
